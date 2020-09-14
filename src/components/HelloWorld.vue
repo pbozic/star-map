@@ -42,7 +42,7 @@ export default {
   culture: "",        // Source of constellations and star names, default "iau", other: "cn" Traditional Chinese
    stars: {
     show: true,    // Show stars
-    limit: 6,      // Show only stars brighter than limit magnitude
+    limit: 4,      // Show only stars brighter than limit magnitude
     colors: true,  // Show stars in spectral colors, if not use default color
     style: { fill: "#ffffff", opacity: 1 }, // Default style for stars
     designation: false, // Show star names (Bayer, Flamsteed, Variable star, Gliese or designation, 
