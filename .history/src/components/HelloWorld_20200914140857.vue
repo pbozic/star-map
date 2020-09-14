@@ -20,7 +20,6 @@ export default {
     return {
       api_key: "pk.4648c2b6ecdd58446110e10f87dcfbd6",
       naslov: "asd",
-      test: "test",
       config: { 
   width: 1024,           // Default width, 0 = full parent element width; 
                       // height is determined by projection
@@ -218,6 +217,6 @@ export default {
 }
 #celestial-map canvas {
   position: relative;
-
+  display: block;
 }
 </style>
