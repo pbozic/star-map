@@ -1,9 +1,7 @@
 <template>
   <div class="hello">
     <div id="celestial-map"></div>
-    <input type="text" v-model="naslov">
     <div id="celestial-form"></div>
-    <a href='https://locationiq.com'>Search by LocationIQ.com</a>
    </div>
 
 </template>
@@ -18,9 +16,32 @@ export default {
   },
   data() {
     return {
-      api_key: "pk.4648c2b6ecdd58446110e10f87dcfbd6",
-      naslov: "asd",
-      config: { 
+      api_key: "pk.4648c2b6ecdd58446110e10f87dcfbd6"
+    }
+  },
+  methods: {
+    async getLocation() {
+      let resp = await axios.get(`https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
+      this.config.geopos = [resp.lat, resp.lon]
+     // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
+    }
+  },
+  watch: {
+    naslov: function (val) {
+      this.getLocation();
+    },
+     config: {
+      // This will let Vue know to look inside the array
+      deep: true,
+
+      // We have to move our method to a handler field
+      handler() {
+
+      }
+     }
+  },
+  mounted() {
+    var config = { 
   width: 1024,           // Default width, 0 = full parent element width; 
                       // height is determined by projection
   projection: "aitoff",    // Map projection used: see below
@@ -179,33 +200,8 @@ export default {
   daylight: {  //Show day sky as a gradient, if location is set and map projection is hemispheric
     show: false
   }
-}
-    }
-  },
-  methods: {
-    async getLocation() {
-      let resp = await axios.get(`https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
-      this.config.geopos = [resp.lat, resp.lon];
-     // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
-    }
-  },
-  watch: {
-    naslov: function (val) {
-      this.getLocation();
-    },
-     config: {
-      // This will let Vue know to look inside the array
-      deep: true,
-
-      // We have to move our method to a handler field
-      handler() {
-         Celestial.display(this.config)
-      }
-     }
-  },
-  mounted() {
-  
-    Celestial.display(this.config)
+};
+    Celestial.display(config)
   }
 }
 </script>

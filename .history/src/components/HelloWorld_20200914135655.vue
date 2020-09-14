@@ -199,7 +199,7 @@ export default {
 
       // We have to move our method to a handler field
       handler() {
-         Celestial.display(this.config)
+
       }
      }
   },
