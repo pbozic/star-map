@@ -7,7 +7,6 @@ import '@trevoreyre/autocomplete-vue/dist/style.css'
 Vue.config.productionTip = false
 
 Vue.use(Autocomplete)
-
 new Vue({
   router,
   render: h => h(App)

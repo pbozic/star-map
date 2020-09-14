@@ -10,7 +10,7 @@
     <label for="location">Naslov (test)</label>
     <br>
     <br>
-    <autocomplete @model="naslov" :search="search"></autocomplete>
+    <autocomplete :search="search"></autocomplete>
     <br>
     <br>
     <a href='https://locationiq.com'>Search by LocationIQ.com</a>
@@ -204,9 +204,9 @@ export default {
       this.autocomplete = resp.data;
      // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
     },
-    async search(input) {
-      let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${input}&format=json`);
-      return resp.data.map(l => l.display_name);
+    async search() {
+      let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
+      return resp.data;
 
     }
   },

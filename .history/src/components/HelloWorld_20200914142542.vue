@@ -10,7 +10,7 @@
     <label for="location">Naslov (test)</label>
     <br>
     <br>
-    <autocomplete @model="naslov" :search="search"></autocomplete>
+    <autocomplete :search="search"></autocomplete>
     <br>
     <br>
     <a href='https://locationiq.com'>Search by LocationIQ.com</a>

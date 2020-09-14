@@ -10,7 +10,7 @@
     <label for="location">Naslov (test)</label>
     <br>
     <br>
-    <autocomplete @model="naslov" :search="search"></autocomplete>
+    <input type="text" id="location" v-model="naslov">
     <br>
     <br>
     <a href='https://locationiq.com'>Search by LocationIQ.com</a>
@@ -196,18 +196,13 @@ export default {
   methods: {
     async getLocation() {
       let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
-      this.config.geopos = [resp.data.lat, resp.data.lon];
+      this.config.geopos = [resp.lat, resp.lon];
      // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
     },
     async getAutocomplete() {
       let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
-      this.autocomplete = resp.data;
+      this.config.geopos = [resp.lat, resp.lon];
      // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
-    },
-    async search(input) {
-      let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${input}&format=json`);
-      return resp.data.map(l => l.display_name);
-
     }
   },
   watch: {
