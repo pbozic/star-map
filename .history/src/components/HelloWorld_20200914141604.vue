@@ -4,9 +4,7 @@
   
     <div id="celestial-form"></div>
     <br>
-    <br>
-    <label for="location">Naslov (test)</label>
-    <input type="text" id="location" v-model="naslov">
+    <input type="text" v-model="naslov">
     <a href='https://locationiq.com'>Search by LocationIQ.com</a>
    </div>
 

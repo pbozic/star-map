@@ -4,9 +4,7 @@
   
     <div id="celestial-form"></div>
     <br>
-    <br>
-    <label for="location">Naslov (test)</label>
-    <input type="text" id="location" v-model="naslov">
+    <input type="text" v-model="naslov">
     <a href='https://locationiq.com'>Search by LocationIQ.com</a>
    </div>
 
@@ -23,7 +21,7 @@ export default {
   data() {
     return {
       api_key: "pk.4648c2b6ecdd58446110e10f87dcfbd6",
-      naslov: "Ulica Bratov Učakar 84",
+      naslov: "asd",
       test: "test",
       config: { 
   width: 1024,           // Default width, 0 = full parent element width; 
@@ -53,7 +51,7 @@ export default {
   culture: "",        // Source of constellations and star names, default "iau", other: "cn" Traditional Chinese
    stars: {
     show: true,    // Show stars
-    limit: 5,      // Show only stars brighter than limit magnitude
+    limit: 4,      // Show only stars brighter than limit magnitude
     colors: true,  // Show stars in spectral colors, if not use default color
     style: { fill: "#ffffff", opacity: 1 }, // Default style for stars
     designation: false, // Show star names (Bayer, Flamsteed, Variable star, Gliese or designation, 
