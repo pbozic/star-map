@@ -1,22 +1,24 @@
 <template>
   <div class="hello">
-     <label for="location">Naslov (test)</label>
-    <br>
-    <br>
-    <div class="location">
-      <autocomplete @model="naslov" :search="search" @submit="submit" :debounceTime="500"></autocomplete>
-    </div>
-   
-    <br>
-    <br>
-    <a href='https://locationiq.com'>Search by LocationIQ.com</a>
-    <br>
-    <br>
     <div id="celestial-map"></div>
   
     <div id="celestial-form"></div>
-  
-   
+    <br>
+    <br>
+    <br>
+    <br>
+    <label for="location">Naslov (test)</label>
+    <br>
+    <br>
+    <autocomplete @model="naslov" :search="search" :submit="submit" :debounceTime="500"></autocomplete>
+    <br>
+    <br>
+    <a href='https://locationiq.com'>Search by LocationIQ.com</a>
+    <code>
+    <pre>
+      {{JSON.stringify(this.config)}}
+    </pre>
+    </code>
    </div>
 
 </template>
@@ -199,8 +201,8 @@ export default {
   methods: {
     async getLocation() {
       let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
-      console.log(resp.data);
-      Celestial.location([resp.data[0].lat, resp.data[0].lon])
+      this.config.geopos = [resp.data.lat, resp.data.lon];
+      alert("CONFIG");
      // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
     },
     async getAutocomplete() {
@@ -215,6 +217,7 @@ export default {
     },
     submit(result) {
       this.naslov = result;
+      alert("NASLOV");
       this.getLocation();
     }
   },
@@ -228,16 +231,14 @@ export default {
 
       // We have to move our method to a handler field
       handler() {
-          //Celestial.reload(this.config);
+        alert("RENDER CANVAS");
+         Celestial.display(this.config)
       }
      }
   },
   mounted() {
-    let that = this;
-   setTimeout(() => {
-      Celestial.display(that.config)
-   }, 1000)
- 
+  
+    Celestial.display(this.config)
   }
 }
 </script>
@@ -250,9 +251,5 @@ export default {
 #celestial-map canvas {
   position: relative;
 
-}
-.location {
-  margin:0px auto;
-  width: 50%;
 }
 </style>

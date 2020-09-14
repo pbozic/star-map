@@ -1,6 +1,13 @@
 <template>
   <div class="hello">
-     <label for="location">Naslov (test)</label>
+    <div id="celestial-map"></div>
+  
+    <div id="celestial-form"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <label for="location">Naslov (test)</label>
     <br>
     <br>
     <div class="location">
@@ -10,13 +17,6 @@
     <br>
     <br>
     <a href='https://locationiq.com'>Search by LocationIQ.com</a>
-    <br>
-    <br>
-    <div id="celestial-map"></div>
-  
-    <div id="celestial-form"></div>
-  
-   
    </div>
 
 </template>
@@ -233,11 +233,8 @@ export default {
      }
   },
   mounted() {
-    let that = this;
-   setTimeout(() => {
-      Celestial.display(that.config)
-   }, 1000)
- 
+  
+    Celestial.display(this.config)
   }
 }
 </script>
@@ -250,9 +247,5 @@ export default {
 #celestial-map canvas {
   position: relative;
 
-}
-.location {
-  margin:0px auto;
-  width: 50%;
 }
 </style>

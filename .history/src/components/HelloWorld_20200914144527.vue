@@ -233,11 +233,8 @@ export default {
      }
   },
   mounted() {
-    let that = this;
-   setTimeout(() => {
-      Celestial.display(that.config)
-   }, 1000)
- 
+  
+    Celestial.display(this.config)
   }
 }
 </script>

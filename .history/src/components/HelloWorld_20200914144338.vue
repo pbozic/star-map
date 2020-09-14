@@ -1,22 +1,24 @@
 <template>
   <div class="hello">
-     <label for="location">Naslov (test)</label>
-    <br>
-    <br>
-    <div class="location">
-      <autocomplete @model="naslov" :search="search" @submit="submit" :debounceTime="500"></autocomplete>
-    </div>
-   
-    <br>
-    <br>
-    <a href='https://locationiq.com'>Search by LocationIQ.com</a>
-    <br>
-    <br>
     <div id="celestial-map"></div>
   
     <div id="celestial-form"></div>
-  
-   
+    <br>
+    <br>
+    <br>
+    <br>
+    <label for="location">Naslov (test)</label>
+    <br>
+    <br>
+    <autocomplete @model="naslov" :search="search" @submit="submit" :debounceTime="500"></autocomplete>
+    <br>
+    <br>
+    <a href='https://locationiq.com'>Search by LocationIQ.com</a>
+    <code>
+    <pre>
+      {{JSON.stringify(this.config)}}
+    </pre>
+    </code>
    </div>
 
 </template>
@@ -233,11 +235,8 @@ export default {
      }
   },
   mounted() {
-    let that = this;
-   setTimeout(() => {
-      Celestial.display(that.config)
-   }, 1000)
- 
+  
+    Celestial.display(this.config)
   }
 }
 </script>
@@ -250,9 +249,5 @@ export default {
 #celestial-map canvas {
   position: relative;
 
-}
-.location {
-  margin:0px auto;
-  width: 50%;
 }
 </style>
