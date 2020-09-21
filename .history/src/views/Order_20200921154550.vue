@@ -566,7 +566,7 @@ input.disabled {
     .nav-item a {
         line-height: 32px;
     }
-    .col-sm-3+ .col-sm-3 {
+    .form-control + .form-control {
       margin-top: 15px;
     }
 }
