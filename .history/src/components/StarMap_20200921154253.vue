@@ -344,8 +344,8 @@ export default {
 }
 &.extra {
   background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
-  color: black !important;
+background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+color: black !important;
 }
   -webkit-box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
 -moz-box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);

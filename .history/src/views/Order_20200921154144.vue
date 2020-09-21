@@ -206,7 +206,7 @@
                       </div>
                       <br />
                        <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-3">
                           <h4 class="h4">Velikost</h4> 
                             <select class="form-control" id="exampleFormControlSelect1"  v-model="selected_size">
                               <option hidden disabled selected value>Izberi velikost</option>
