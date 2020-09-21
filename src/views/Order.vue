@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-3"></div>
-         <div class="col"><StarMap v-bind:font1="font1" v-bind:font2="font2" v-bind:text1="text1"  v-bind:text2="text2" v-bind:dateText="dateText" /></div>
+         <div class="col"><StarMap v-bind:font1="font1" v-bind:font2="font2" v-bind:text1="text1"  v-bind:text2="text2" v-bind:dateText="dateText" v-bind:extra_design="extra_design" v-bind:selected_type="selected_type" v-bind:color="selected_color"/></div>
          <div class="col-sm-3"></div>
       </div>
       <div class="row">
@@ -80,7 +80,11 @@
              
                   <br />
                   <br />
-                <button :class="['next-button', {'disabled': this.location == null}]" @click="nextTab('posvetilo')">Nadaljuj</button>
+                  <div class="controlls">
+                     
+                    <button :class="['next-button', {'disabled': this.location == null}, 'float-right']" @click="nextTab('posvetilo')">Nadaljuj</button>
+                  </div>
+               
                 <br />
                   <br />
                 <a href='https://locationiq.com'>Search by LocationIQ.com</a>
@@ -117,59 +121,119 @@
                     </div>
                 </div>
                  <br />
-                 <div class="row" v-show="text2 != null">
+                 <div class="row">
                     <div class="col-sm-6">
                       <label for="">Pisava napis/posvetilo 2</label>
                        <select class="form-control" id="exampleFormControlSelect1"  v-model="font2">
                           <option value="Arial">Font1</option>
                           <option value="Helevetica">Font2</option>
                           <option value="sans-serif">Font3</option>
-                          <option value="Times New Roman">Font4</option>
+                          <option value="Times New Roman">Font5</option>
                         </select>
                     </div>
                 </div>
-                 <br />
+                <br />
+                   <div class="row">
+                    <div class="col-sm-6">
+                      <label for="coment">Komentar</label>
+                      <br />
+                      <textarea name="coment" id="coment" rows="3" v-model="comment"></textarea>
+                    </div>
+                </div>
+
                   <br />
-                <button class="next-button" @click="nextTab('izgled')">Nadaljuj</button>
+                  <br />
+                  <div class="controlls">
+                    <button :class="['next-button', 'float-left']" @click="nextTab('trenutek')">Nazaj</button>
+                    <button :class="['next-button', {'disabled': this.location == null}, 'float-right']" @click="nextTab('izgled')">Nadaljuj</button>
+                  </div>
               </div>
               <div :class='["tab-pane fade", {"show active": selected_tab === "izgled"}]' id="izgled" role="tabpanel" aria-labelledby="izgled-tab">
-                <div class="row">
+                <div class="row" v-show="selected_product == null">
                   <div class="col">                 
-                    <h1 class="h1 text-center">VRSTA</h1>
+                    <h1 class="h1 text-center">STIL</h1>
                   </div>
                 </div>
 
-                <div class="row">
+                <div class="row" v-show="selected_product == null">
                   <div class="col">
                     <div class="row">
-                      <div class="col vrsta umetniska">
-                        <img src="../assets/images/umetniska.jpg" alt="">
+                      <div :class="{'col-3 vrsta': true, 'active': selected_product ? selected_product.id === product.id ? true : false : false }" v-for="product of products" :key="product.id" @click="selectProduct(product)">
+                        <img :src="product.selectedImage" alt="">
                         <div class="overlay">
-                          <span>Umetniška</span>
-                        </div>
-                      </div>
-                      <div class="col vrsta razlita">
-                         <img src="../assets/images/razlita.jpg" alt="">
-                        <div class="overlay">
-                          <span>Razlita</span>
-                        </div>
-                      </div>
-                      <div class="col vrsta minimal">
-                         <img src="../assets/images/minimal.jpg" alt="">
-                        <div class="overlay">
-                          <span>Minimalistična</span>
+                          <span>{{product.title}}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="row" v-if="selected_product != null">
+                  <div class="col">                 
+                    <h1 class="h1 text-center">IZGLED</h1>
+                  </div>
+                </div>
+                <div class="row" v-if="selected_product != null">
+                  <!-- BARVE -->
+                  <div class="col">
+                    <div class="row">
+                      <div :class="{'col-3 barva': true, 'active': selected_color === color }" v-for="(color) of selected_product_variations.colors" :key="color" @click="selected_product_varaint = selected_product_variations.map[color]; selected_color = color">
+                        <img :src="selected_product_variations.map[color].image" alt="">
+                        <div class="overlay">
+                          <span>{{color}}</span>
+                        </div>
+                      </div>
+                    </div>
+                     <div class="row" v-if="selected_product.title == 'Umetniška zvezdna mapa' || selected_product.title == 'Razlita zvezdna mapa'">
+                        <div class="col">
+                          <h4 class="h4">Detajli</h4> 
+                          <div class="form-check">
+                            <input type="radio" value="krog" class="form-check-input" id="krog" v-model="extra_design">
+                            <label class="form-check-label" for="krog">Krog</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" value="krog2" class="form-check-input" id="krog2" v-model="extra_design">
+                            <label class="form-check-label" for="krog2">Dva kroga</label>
+                          </div>
+                          <div class="form-check">
+                              <input type="radio" value="kvadrat" class="form-check-input" id="kvadrat" v-model="extra_design">
+                              <label class="form-check-label" for="kvadrat">Kvadrat</label>
+                            </div>
+                            <div class="form-check">
+                              <input type="radio" value="none" class="form-check-input" id="none" v-model="extra_design">
+                              <label class="form-check-label" for="none">Brez</label>
+                            </div>
+                        </div>
+                      </div>
+                      <br />
+                       <div class="row">
+                        <div class="col-3">
+                          <h4 class="h4">Velikost</h4> 
+                            <select class="form-control" id="exampleFormControlSelect1"  v-model="selected_size">
+                              <option hidden disabled selected value>Izberi velikost</option>
+                              <option :value="size" v-for="(size, i) of selected_product_variations.sizes" :key="size">{{size}}</option>
+                            </select>
+                      </div>
+                      </div>
+                  </div>
+                  <!-- DETAJLI -->
+                 
+                  <!-- VELIKOST -->
 
 
-                 <!-- <button @click="selected_tab = 'izgled'">Next</button> -->
+
+
+                  </div>
+                  <br/>
+                  {{example_text}}
+                  <br />
+                  <div class="controlls">
+                     <button :class="['next-button', 'float-left']" @click="selected_product == null ? nextTab('posvetilo') : selected_product = null">Nazaj</button>
+                     <button :class="['next-button', 'float-right']" @click="getSelectedProductVariant()">Poglej Ceno</button>
+                  </div>
+                
               </div>
             </div>
             <div class="tabs">
-               
             </div>
           </div>
       </div>
@@ -181,19 +245,22 @@
 <script>
 // @ is an alias to /src
 import StarMap from '@/components/StarMap.vue'
+import ShopifyClient from '@/lib/shopify.js'
+import config from "../config.js";
+
 import axios from "axios";
 export default {
   name: 'Home',
   data() {  
     return {
       selected_tab: "trenutek",
-       api_key: "pk.4648c2b6ecdd58446110e10f87dcfbd6",
+      api_key: "pk.4648c2b6ecdd58446110e10f87dcfbd6",
       naslov: "Ulica Bratov Učakar 84",
       test: "test",
       day: 1,
       month: "Januar",
-      location: [0,0],
-      location_name: "",
+      location: null,
+      location_name: null,
       year: 2020,
       hour: 12,
       minute: "00",
@@ -204,6 +271,15 @@ export default {
       font2: null,
       dateText: "",
       errorMsg: null,
+      products: null,
+      selected_product: null,
+      selected_product_variations: null,
+      extra_design: "krog",
+      comment: "",
+      selected_color: "",
+      selected_size: "",
+      example_text: "",
+      selected_type: "normal"
     }
   },
   components: {
@@ -256,6 +332,22 @@ export default {
           behavior: 'smooth'
       });
     },
+    getSelectedProductVariant() {
+      let seProd = this.selected_product;
+      let foundProduct = null;
+      for (let v of seProd.variants) {
+        if (v.title === `${this.selected_size} / ${this.selected_color}`) {
+          foundProduct = v;
+        }
+      }
+      console.log(foundProduct);
+      // this.shopifyClient.addToCart(foundProduct.id, this.checkoutId, (cart) => {
+      //   console.log("cart", cart);
+      // }, (e) => console.log(e))
+
+      this.example_text = foundProduct.price + " " + seProd.title + " - " + foundProduct.title + " (" + foundProduct.id + ")"; 
+      return foundProduct;
+    },
     getDate() {
           let dt = new Date(this.day + ", " + this.month + " " + this.year + " " + this.time);
           console.log(dt)
@@ -269,6 +361,39 @@ export default {
       const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
       console.log(`${da}-${mo}-${ye}`);
       return `${loc}, ${da}.${mo}.${ye}`;
+    },
+    selectProduct(product) {
+        this.selected_product = product;
+        this.selected_type = product.title.includes("Umetniška") || product.title.includes("Razlita") ? "extra" : "normal"
+        this.getVariantMap(product);
+    },
+    getVariantMap(product) {
+     
+      let variants = product.variants;
+      let colors = [];
+      let sizes = [];
+      let map = {};
+      for (let v of variants) {
+        console.log("v", v)
+        let title = v.title;
+        let t_split = title.split(" / ");
+        sizes.push(t_split[0])
+        colors.push(t_split[1])
+        if (map[t_split[1]] == null) {
+          map[t_split[1]] = v;
+        }
+
+      }
+       console.log("map", {
+       colors: [...new Set(colors)],
+       sizes: [...new Set(sizes)],
+       map: map
+     })
+     this.selected_product_variations = {
+       colors: [...new Set(colors)],
+       sizes: [...new Set(sizes)],
+       map: map
+     }
     }
   },
   computed: {
@@ -294,9 +419,43 @@ export default {
       }
      }
   },
+  mounted() {
+    this.shopifyClient = new ShopifyClient(config.shopifyDomain, config.shopifyToken);
+    this.shopifyClient.allProducts(products => {
+      
+        products = products.filter(p => p.availableForSale);
+        this.products = products.filter(p => {
+          if (p.title == "Mapa mesta") {
+            return false
+          }
+          if (p.title == "Astrološko znamenje") {
+            return false
+          }
+          if (p.title == "Jungle friends") {
+            return false
+          }
+          if (p.title == "Dvojna zvezdna mapa") {
+            return false
+          }
+          return true
+        })
+        console.log(this.products)
+        this.$emit('hide-loader')
+    }, (e) => console.log(e))
+    this.shopifyClient.createCheckoutId(checkout => {
+      this.checkoutId = checkout;
+    }, (e) => console.log(e))
+  }
 }
 </script>
 <style lang="scss">
+#myTabContent {
+  min-height: 500px;
+  transition: height 0.5 ease-in-out;
+}
+.controlls{
+  margin-bottom: 45px;
+}
 .tab-pane {
   padding: 25px;
   padding-left: 0px;
@@ -331,6 +490,10 @@ button {
     outline: 2px solid #852b23;
   }
 }
+textarea {
+  width: 100%;
+}
+textarea,
 input {
 
 list-style: none;
@@ -408,6 +571,7 @@ input.disabled {
 <style lang="scss" scoped>
 
 .vrsta{
+    margin-bottom: 15px;
     min-height: auto;
     background-size: contain;
     background-repeat: no-repeat;
@@ -415,9 +579,11 @@ input.disabled {
     background-origin: content-box;
     position: relative;
     cursor: pointer;
+    &.active {
+      border: 2px solid #852b23;
+    }
     img {
       max-width: 100%;
-      visibility: hidden;
     }
     .overlay{
       opacity: 0;
@@ -446,14 +612,47 @@ input.disabled {
       }
     }
 }
-.umetniska {
- background-image: url("../assets/images/umetniska.jpg");
-}
-.razlita {
- background-image: url("../assets/images/razlita.jpg");
-}
-.minimal {
-   background-image: url("../assets/images/minimal.jpg");
+.barva{
+    margin-bottom: 15px;
+    min-height: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 15px;
+    background-origin: content-box;
+    position: relative;
+    cursor: pointer;
+    &.active {
+      border: 2px solid #852b23;
+    }
+    img {
+      max-width: 100%;
+    }
+    .overlay{
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      background-color: rgba(0,0,0, 0.4);
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      span {
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        text-transform: uppercase;
+        display: block;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+      }
+    }
+    &:hover {
+     .overlay{
+        opacity: 1;
+      }
+    }
 }
 
 </style>

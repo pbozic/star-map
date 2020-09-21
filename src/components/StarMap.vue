@@ -1,27 +1,27 @@
 <template>
-  <div class="star-map">
-    <div class="circle">
-       
-       
-    </div>
-    <div class="map">
-      <div id="celestial-map"></div>
-    </div>
-    <div class="text-area">
-        <div v-resize-text class="text" :style="{'font-size': font_size1, 'font-family': font1 || 'Quattrocento Sans'}" ref="posvetilo">
-          {{text1 || "Napis 1"}}
-        </div>
+  <div class="okvir">
+    <div :class="{'star-map': true, [selected_type]: true, [color_mapped]: true,}">
+      <div :class='{"circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
+        
+        
+      </div>
+      <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
+        <div id="celestial-map"></div>
+      </div>
+      <div class="text-area">
+          <div v-resize-text class="text" :style="{'font-family': font1 || 'Quattrocento Sans'}" ref="posvetilo">
+            {{text1 || "Primer posvetilo 1"}}
+          </div>
 
-        <div v-resize-text class="text" :style="{'font-size': font_size2, 'font-family': font2 || 'Quattrocento Sans'}" ref="malo">
-          {{text2 || "Napis 2"}}
-        </div>
-        <div class="datum">
-         {{dateText || "Kraj, 01.01.2020"}}
-        </div>
+          <div v-resize-text class="text" :style="{'font-family': font2 || 'Quattrocento Sans'}" ref="malo">
+            {{text2}}
+          </div>
+          <div class="datum">
+          {{dateText || "Kraj, 01.01.2020"}}
+          </div>
+      </div>
     </div>
-  
   </div>
-
 </template>
 
 <script>
@@ -33,7 +33,10 @@ export default {
     text2: String,
     font1: String,
     font2: String,
-    dateText: String
+    dateText: String,
+    extra_design: String,
+    selected_type: String,
+    color: String,
   },
   data() {
     return {
@@ -43,6 +46,7 @@ export default {
       font_size1: "50px",
       font_size2: "50px",
       canvas: null,
+      color_mapped: "normal",
       config: { 
   width: 0,           // Default width, 0 = full parent element width; 
                       // height is determined by projection
@@ -85,7 +89,7 @@ export default {
                             // (see list below of languages codes available for stars)
     propernameStyle: { fill: "#ddddbb", font: "13px 'Palatino Linotype', Georgia, Times, 'Times Roman', serif", align: "right", baseline: "bottom" },
     propernameLimit: 1.5,  // Show proper names for stars brighter than propernameLimit
-    size: 7,       // Maximum size (radius) of star circle in pixels
+    size: 5,       // Maximum size (radius) of star circle in pixels
     exponent: -0.28, // Scale exponent for star size, larger = more linear
     data: 'stars.6.json' // Data source for stellar data, 
                          // number indicates limit magnitude
@@ -215,39 +219,11 @@ export default {
         var metrics = context.measureText(text);
         return metrics.width;
     },
-    fontSize1(el) {
-      let minFontSize= "16px";
-      let maxFontSize= "50px";
-      let element = this.$refs.posvetilo.clientWidth;
-        const size =
-          Math.max(
-            Math.min(
-              element / (1 * 10),
-              parseFloat(maxFontSize)
-            ),
-            parseFloat(minFontSize)
-          ) + "px";
-           this.font_size1 = size;
-    },
-     fontSize2(el) {
-      let minFontSize= "16px";
-      let maxFontSize= "50px";
-      let element = this.$refs.malo.clientWidth;
-        const size =
-          Math.max(
-            Math.min(
-              element / (1 * 10),
-              parseFloat(maxFontSize)
-            ),
-            parseFloat(minFontSize)
-          ) + "px";
-          this.font_size2 = size;
-    }
   },
   watch: {
     text1: function (val) {
       let x= 1;
-      let y = 50;
+      let y = 64;
       while (x == 1) {
           var element = this.$refs.posvetilo;
           if ((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)) {
@@ -260,7 +236,7 @@ export default {
     },
     text2: function (val) {
       let x= 1;
-      let y = 50;
+      let y = 64;
       while (x == 1) {
           var element = this.$refs.malo;
           if ((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)) {
@@ -270,17 +246,35 @@ export default {
               x = 0;
           }
       }
+      console.log(y);
     },
      color: {
-       deep: true,
        handler() {
-         this.config.background.fill = this.color
+         console.log("c", this.color);
+         if (this.color.includes("SENČENA")) {
+           this.config.background.fill = "#454955";
+            this.config.background.stroke = "#ffffff";
+             this.color_mapped = "lead_grey";
+         }
+         if (this.color.includes("ČRNA")) {
+           this.config.background.fill = "#000000";
+            this.config.background.stroke = "#ffffff";
+           this.color_mapped = "black";
+         }
+            if (this.color.includes("BELA")) {
+           this.config.background.fill = "#000000";
+            this.config.background.stroke = "#000000";
+           this.color_mapped = "normal";
+         }
          Celestial.apply(this.config);
        }
      }
   },
   mounted() {
     let that = this;
+    
+    this.$nextTick(() => {
+    })
    setTimeout(() => {
       Celestial.display(that.config)
    }, 1000)
@@ -298,13 +292,38 @@ export default {
   position: relative;
   pointer-events: none;
   display: block;
-  border: 1px solid black;
   border-radius: 50%;
   margin: 0 auto;
+  border-color: black;
+}
+.lead_grey {
+    #celestial-map canvas {
+    border-color: #454955 !important;
+  }
+}
+.black {
+  #celestial-map canvas {
+    border-color: black !important;
+  }
+}
+.circle {
+  #celestial-map canvas {
+    border: 1px solid;
+  }
+}
+.circle2 {
+  #celestial-map canvas {
+    border: 1px solid;
+    
+  }
 }
 </style>
 <style lang="scss" scoped>
-
+.okvir {
+  // border: double orange;
+  // border-width:80px;
+  // border-image: url("../assets/images/okvir.png") 12% 10% 10% 10% repeat;
+}
 .location {
   margin:0px auto;
   width: 50%;
@@ -312,29 +331,51 @@ export default {
 .star-map {
   // top: 50%;
   // transform: translateY(-50%);
+&.black {
+  color: white;
+  background-color: black;
+  border-color: brown;
+  
+}
+&.lead_grey{
+   border-color: brown;
+  background-color: rgb(69, 73, 85);
+   color: white;
+}
+&.extra {
+  background-color: #ffffff;
+background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+}
+  -webkit-box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
+-moz-box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
+box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
+  margin-top: 50px;
   position: relative;
   width: 90%;
   margin-left: 5%;
   height: 600px;
   background-color: white;
-  border: 5px brown solid;
+  border: 5px black solid;
   padding: 25px;
   .map {
     width: 70%;
     margin-left: 15%;
-  }
-  .circle {
-    display: block;
-    position: absolute;
-    overflow: hidden;
-    width: 200px;
-    height: 200px;
-    margin-left: 0 auto;
-    border-radius: 50%;
-    #celestial-map {
-      height: 100% !important;
+    &.square {
+      border: 1px solid black;
     }
   }
+  // .circle {
+  //   display: block;
+  //   position: absolute;
+  //   overflow: hidden;
+  //   width: 200px;
+  //   height: 200px;
+  //   margin-left: 0 auto;
+  //   border-radius: 50%;
+  //   #celestial-map {
+  //     height: 100% !important;
+  //   }
+  // }
 }
 .text-area {
     bottom: 0px;
@@ -348,6 +389,7 @@ export default {
       position: relative;
       top: 0px;
       max-height: 100px;
+      min-height: 100px;
       margin-bottom: 10px;
     }
 }
@@ -365,6 +407,7 @@ export default {
   height: 200px;
    .text {
       max-height: 100px;
+      min-height: 100px;
     }
 }
 }
