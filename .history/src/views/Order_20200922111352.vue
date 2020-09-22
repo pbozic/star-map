@@ -288,19 +288,19 @@ export default {
   },
   methods: {
     async getLocation() {
-      let resp = await axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${this.naslov}&key=${this.api_key}&type=locality`);
+      let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
       console.log(resp.data);
       this.location = [resp.data[0].lat, resp.data[0].lon];
       this.location_name = resp.data[0].display_name;
      // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
     },
     async getAutocomplete() {
-      let resp = await axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${this.naslov}&key=${this.api_key}&type=locality`);
+      let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${this.naslov}&format=json`);
       this.autocomplete = resp.data;
      // https://us1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=Ulica%20bratov%20u%C4%8Dakar%2084&format=json
     },
     async search(input) {
-     let resp = await axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${this.api_key}&type=locality`);
+      let resp = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.4648c2b6ecdd58446110e10f87dcfbd6&q=${input}&format=json`);
       return resp.data.map(l => l.display_name);
 
     },
