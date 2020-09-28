@@ -13,6 +13,8 @@
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.1",
     "core-js": "^3.6.5",
+    "svg-parser": "^2.0.4",
+    "svgson": "^4.1.0",
     "vue": "^2.6.12",
     "vue-resize-text": "^0.1.1",
     "vue-router": "^3.2.0"
@@ -24,6 +26,7 @@
     "@vue/test-utils": "^1.0.3",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
+    "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Unicorn Sparkles';
+    src: url('UnicornSparkles.woff2') format('woff2'),
+        url('UnicornSparkles.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bodoni Bk BT';
+    src: url('BodoniBT-Book.woff2') format('woff2'),
+        url('BodoniBT-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Queen Xylophia';
+    src: url('QueenXylophia-Regular.woff2') format('woff2'),
+        url('QueenXylophia-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bodoni Bk BT';
+    src: url('BodoniBT-BookItalic.woff2') format('woff2'),
+        url('BodoniBT-BookItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kiss Me or Not';
+    src: url('KissMeorNot.woff2') format('woff2'),
+        url('KissMeorNot.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'raustila';
+    src: url('raustila-Regular.woff2') format('woff2'),
+        url('raustila-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'I Love Glitter';
+    src: url('ILoveGlitter.woff2') format('woff2'),
+        url('ILoveGlitter.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
