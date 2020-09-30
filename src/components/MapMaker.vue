@@ -5,6 +5,9 @@
       <div id="output"></div>
       <starMap></starMap>
       <svg id="svg"></svg>
+
+      <img class="mask" src="@/assets/images/mask.png" alt="">
+      <div id="img-foo"></div>
   </div>
 </template>
 
@@ -13,6 +16,7 @@ const { parse, stringify } = require('svgson')
 import {RenderMode, Svg2Roughjs} from 'svg2roughjs'
 import svgFile from "@/assets/images/map.svg";
 import starMap from "@/components/StarMap.vue";
+import {main} from 'magica'
 
 
 export default {
@@ -28,7 +32,16 @@ export default {
   methods: {
      
   },
-  mounted() {
+  async mounted() {
+    const result = await main({
+      debug: true,
+      command: 'convert zvezde.signapps.io/img/mask.png zvezde.signapps.io/img/ares.svg -compose luminize  -composite',
+      inputFiles: [ 'zvezde.signapps.io/img/mask.png', 'zvezde.signapps.io/img/ares.svg' ]
+    })
+    console.log("result", result);
+      // const dataUrl = `data:image/png;base64,${btoa(String.fromCharCode(...result.outputFiles[0].content))}`
+      // document.getElementById('img-foo').src = dataUrl
+
     const svg2roughjs = new Svg2Roughjs('#output', RenderMode.SVG, {
         bowing: parseInt(0),
         roughness: parseInt(2),
@@ -83,7 +96,7 @@ export default {
 
           var svgEl = document.createElement("svg");
           let group = svgEl.appendChild(document.createElement("g"));
-       
+          group.setAttribute("id", "clipPath");
           for (let con of consts) {
             group.appendChild(con);
           }
@@ -148,6 +161,10 @@ function loadSvgString(fileContent) {
 <style lang="scss">
   #output {
     width: 300px;
+  }
+  .mask {
+    width: 300px;
+    mask: url("#clipPath");
   }
 </style>
 <style lang="scss" scoped>

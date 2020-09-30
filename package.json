@@ -14,6 +14,7 @@
     "bootstrap-vue": "^2.17.1",
     "core-js": "^3.6.5",
     "fs-web": "^1.0.1",
+    "magica": "^0.2.17",
     "svg-parser": "^2.0.4",
     "svg2roughjs": "^2.1.6",
     "svgson": "^4.1.0",
