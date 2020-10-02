@@ -2,8 +2,6 @@
   <div class="okvir">
     <div :class="{'star-map': true, [selected_type]: true, [color_mapped]: true,}">
       <div :class='{"circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
-        
-        
       </div>
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
        
@@ -21,7 +19,7 @@
             {{text2}}
           </div>
           <div class="datum">
-          {{dateText ? dateText.toUppercase() : "KRAJ, 01.01.2020"}}
+          {{dateText || "KRAJ, 01.01.2020"}} 
           </div>
       </div>
     </div>
@@ -235,16 +233,16 @@ export default {
   watch: {
     text1: function (val) {
       let x= 1;
-      let y = 54;
-      while (x == 1) {
-
-          var element = this.$refs.posvetilo;
-          console.log(element.offsetWidth, element.scrollWidth);
-          console.log(element.offsetHeight, element.scrollHeight);
-          element.style.fontSize = parseInt(y) + 'px';
-          if ((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)) {
+      let y = this.text1.length > 15 ? 32 : 48;
+      var element = this.$refs.posvetilo;
+       element.style.fontSize = parseInt(y) + 'px';
+       console.log( element.offsetHeight, (60 < element.offsetHeight), (element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth));
+      while (x == 1) {         
+          if (( 60 < element.offsetHeight) || (element.offsetWidth < element.scrollWidth)) {
               y--;
+               element.style.fontSize = parseInt(y) + 'px';
           } else {
+              
               x = 0;
           }
       }
@@ -253,13 +251,13 @@ export default {
     },
     text2: function (val) {
       let x= 1;
-      let y = 38;
+      let y = this.text1.length > 15 ? 23 : 34;
+       var element = this.$refs.malo;
       while (x == 1) {
       
-          var element = this.$refs.malo;
+         
            element.style.fontSize = parseInt(y) + 'px';
-          if ((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)) {
-             
+          if ((60 < element.offsetHeight) || (element.offsetWidth < element.scrollWidth)) {
               y--;
           } else {
               x = 0;
@@ -343,6 +341,10 @@ export default {
   // border: double orange;
   // border-width:80px;
   // border-image: url("../assets/images/okvir.png") 12% 10% 10% 10% repeat;
+  // background-image: url("../assets/images/mock.png");
+  width: 100%;
+  //height: 600px;
+  background-size: cover;
 }
 .location {
   margin:0px auto;
@@ -418,6 +420,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   background-color: white;
   border: 5px black solid;
   padding: 35px;
+   
   .normal {
     .map {
         width: 100%;
@@ -457,20 +460,21 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     position: absolute;
     text-align: center;
     right: 0px;
-    height: 180px;
-      width: 80%;
-      left: 10%;
+    height: 170px;
+    width: 80%;
+    left: 10%;
     .text {
       word-break: keep-all;
       position: relative;
       top: 0px;
-      max-height: 60px;
+
       min-height: 60px;
       line-height: 30px;
+    
       &:first-child {
-        margin-bottom: 5px;
+        line-height: 30px;
+        margin-bottom: 10px;
       }
-     
       // line-height: 80px;
     }
 }
@@ -487,15 +491,15 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   width: 100%;
 }
 .text-area {
-      height: 170px;
+      height: 160px;
   
    .text {
-      max-height: 35px;
-      min-height: 35px;
-
+      min-height: 60px;
       &:first-child {
-        margin-bottom: 30px;
+        line-height: 30px;
+
       }
+    
     }
 }
 

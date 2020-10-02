@@ -1,20 +1,11 @@
 <template>
   <div class="home">
     <div class="container">
-      <div class="row  d-block d-sm-none">
-        <div class="col">
-           <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-              <li class="nav-item" role="presentation">
-                <a :class="['nav-link', {'active': selected_tab === 'trenutek'}]" @click=" e => e.preventDefault()" id="trenutek-tab">1. Izberi Trenutek</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a :class="['nav-link', {'active': selected_tab === 'posvetilo'}]"  @click=" e => e.preventDefault()" id="posvetilo-tab" >2. Vpiši posvetilo</a>
-              </li>
-              <li class="nav-item" role="presentation">
-                <a :class="['nav-link', {'active': selected_tab === 'izgled' || selected_tab === 'izgled2'}]" @click=" e => e.preventDefault()" id="izgled-tab">3. Izberi Izgled</a>
-              </li>
-            </ul>
+      <div class="row">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{width: `${getProgress()}%`}"></div>
         </div>
+
       </div>
       <div class="row">
         <div class="col-sm-3"></div>
@@ -238,11 +229,12 @@
                        <div class="row">
                         <div class="col-sm-3">
                           <h4 class="h4">Velikost</h4> 
-                            <select class="form-control" id="exampleFormControlSelect1"  v-model="selected_size">
-                              <option hidden disabled selected value>Izberi velikost</option>
-                              <option :value="size" v-for="(size, i) of selected_product_variations.sizes" :key="size">{{size}}</option>
-                            </select>
+                        </div>
                       </div>
+                      <div class="row">
+                          <div :class="{'col-sm-3 col-4 velikost': true, 'active': selected_size === size }" v-for="(size, i) of selected_product_variations.sizes" :key="size" @click="selected_size = size">
+                                <span>{{size}}</span>
+                            </div>
                       </div>
                   </div>
                   <!-- DETAJLI -->
@@ -361,6 +353,24 @@ export default {
       let ln = text.length;
 
     },
+    getProgress(){
+
+
+      switch (this.selected_tab) {
+        case "trenutek":
+          return 33;
+          break;
+        case "posvetilo":
+          return 67;
+          break;
+        case "izgled":
+          return 100;
+          break;
+        default:
+          return 0;
+          break;
+      }
+    },
     nextTab(tab) {
       if (tab.startsWith("posvetilo")) {
         if (this.location == null) {
@@ -414,7 +424,7 @@ export default {
       const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
       const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
       console.log(`${da}-${mo}-${ye}`);
-      return `${loc}, ${da}.${mo}.${ye}`;
+      return `${loc.toUpperCase()}, ${da}.${mo}.${ye}`;
     },
     selectProduct(product) {
         this.selected_product = product;
@@ -720,6 +730,38 @@ input.disabled {
       }
     }
 }
+.velikost{
+    margin-bottom: 15px;
+    min-height: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    position: relative;
+    cursor: pointer;
+    padding-top: 25%;
+    @media (min-width: 340px) and (max-width: 532px) { 
+     padding-top: 33%;
+    }
+    &.active {
+      border: 2px solid #852b23;
+    }
+    span {
+        top: 50%;
+      transform: translateY(-50%);
+      color: black;
+      text-transform: uppercase;
+      display: block;
+      position: absolute;
+      width: 85%;
+      text-align: center;
+      font-size: 24px;
+      @media (min-width: 340px) and (max-width: 532px) { 
+        width: 75%;
+      }
+
+
+    }
+}
 .toasta {
   position: fixed;
   left: 0;
@@ -732,5 +774,16 @@ input.disabled {
   line-height: 35px;
   cursor: pointer;
 }
+.progress {
+  height: 10px;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: rgba(133,43,35, 0.3);
+  .progress-bar {
+    background-color: #852b23;
+  }
 
+}
 </style>

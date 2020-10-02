@@ -114,7 +114,6 @@ export default {
           can      = document.createElement('canvas'), // Not shown on page
           ctx      = can.getContext('2d'),
           loader   = new Image;                        // Not shown on page
-          console.log("svgEl", svgEl);
           loader.width  = can.width  = tgtImage.width;
           loader.height = can.height = tgtImage.height;
           loader.onload = function(){
@@ -123,7 +122,6 @@ export default {
           };
           var svgAsXML = (new XMLSerializer).serializeToString( svgEl );
           loader.src = 'data:image/svg+xml,' + encodeURIComponent( svgAsXML );
-          console.log("slika", 'data:image/svg+xml,' + encodeURIComponent( svgAsXML ));
         });
       });
     }, 1000)
