@@ -21,7 +21,7 @@
             {{text2}}
           </div>
           <div class="datum">
-          {{dateText.toUppercase() || "Kraj, 01.01.2020"}}
+          {{dateText.toUppercase() || "Kraj, 01.01.2020"}} {{extra_design}}
           </div>
       </div>
     </div>
@@ -458,15 +458,14 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     text-align: center;
     right: 0px;
     height: 180px;
-      width: 80%;
-      left: 10%;
+    width: 90%;
+    left: 5%;
     .text {
       word-break: keep-all;
       position: relative;
       top: 0px;
       max-height: 60px;
       min-height: 60px;
-      line-height: 30px;
       &:first-child {
         margin-bottom: 5px;
       }
@@ -488,7 +487,8 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
 }
 .text-area {
       height: 170px;
-  
+      width: 80%;
+      left: 10%;
    .text {
       max-height: 35px;
       min-height: 35px;

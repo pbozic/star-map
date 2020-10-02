@@ -21,7 +21,7 @@
             {{text2}}
           </div>
           <div class="datum">
-          {{dateText.toUppercase() || "Kraj, 01.01.2020"}}
+          {{dateText.toUppercase() || "Kraj, 01.01.2020"}} {{extra_design}}
           </div>
       </div>
     </div>
