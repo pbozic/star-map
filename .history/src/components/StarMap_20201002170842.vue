@@ -382,9 +382,9 @@ export default {
   .square {
     .design {
      position: absolute;
-      top: 5.5%;
-      left: 6.5%;
-      width: 85%!important;
+      top: 9%;
+      left: 13%;
+      width: 74% !important;
     }
   }
   .fancy {

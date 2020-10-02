@@ -374,17 +374,17 @@ export default {
     }
     .design {
       position: absolute;
-      top: 6%;
-      left: 7.5%;
-      width: 84%!important;
+         top: 6%;
+    left: 7.5%;
+    width: 84%!important;
     }
   }
   .square {
     .design {
      position: absolute;
-      top: 5.5%;
-      left: 6.5%;
-      width: 85%!important;
+      top: 9%;
+      left: 13%;
+      width: 74% !important;
     }
   }
   .fancy {
