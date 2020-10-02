@@ -203,8 +203,8 @@ input[type="number"]::-webkit-outer-spin-button { height: auto; }
 
 @font-face {
     font-family: 'Sophia Ronald';
-    src: url('./assets/fonts/SophiaRonald.woff2') format('woff2'),
-        url('./assets/fonts/SophiaRonald.woff') format('woff');
+    src: url('SophiaRonald.woff2') format('woff2'),
+        url('SophiaRonald.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

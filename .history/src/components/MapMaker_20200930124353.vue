@@ -16,6 +16,7 @@ const { parse, stringify } = require('svgson')
 import {RenderMode, Svg2Roughjs} from 'svg2roughjs'
 import svgFile from "@/assets/images/map.svg";
 import starMap from "@/components/StarMap.vue";
+import {main} from 'magica'
 
 
 export default {

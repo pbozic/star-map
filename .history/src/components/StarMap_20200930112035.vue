@@ -6,10 +6,7 @@
         
       </div>
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
-       
-        <div id="celestial-map" v-show="selected_type === 'normal'"></div>
-         <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'">
-       
+        <div id="celestial-map"></div>
       </div>
       <div class="text-area">
           <div class="text" :style="{'font-family': font1 || 'Quattrocento Sans', 'font-size': font1_size}" ref="posvetilo">
@@ -21,7 +18,6 @@
           </div>
           <div class="datum">
           {{dateText || "Kraj, 01.01.2020"}}
-          {{selected_type}}
           </div>
       </div>
     </div>
@@ -29,7 +25,7 @@
 </template>
 
 <script>
-import design from "../assets/images/design.png";
+
 export default {
   name: 'StarMap',
   props: {
@@ -81,7 +77,7 @@ export default {
    stars: {
     show: true,    // Show stars
     limit: 4,      // Show only stars brighter than limit magnitude
-    colors: false,  // Show stars in spectral colors, if not use default color
+    colors: flase,  // Show stars in spectral colors, if not use default color
     style: { fill: "#ffffff", opacity: 1 }, // Default style for stars
     designation: false, // Show star names (Bayer, Flamsteed, Variable star, Gliese or designation, 
                        // i.e. whichever of the previous applies first); may vary with culture setting
@@ -176,7 +172,7 @@ export default {
                         "12px Helvetica, Arial, sans-serif",  // Different fonts for diff.
                         "11px Helvetica, Arial, sans-serif"]},// ranked constellations
     lines: true,   // Show constellation lines, style below
-    lineStyle: { stroke: "#ffffff", width: 1, opacity: 1, roughness: 0.6 }, 
+    lineStyle: { stroke: "#ff0000", width: 1, opacity: 1, roughness: 0.6 }, 
     bounds: false, // Show constellation boundaries, style below
     boundStyle: { stroke: "#00ff00", width: 0.5, opacity: 0.8, dash: [2, 4] }
   },  
@@ -341,9 +337,6 @@ export default {
   width: 50%;
 }
 .star-map {
-  img {
-        width: 100%;
-  }
   // top: 50%;
   // transform: translateY(-50%);
 &.black {

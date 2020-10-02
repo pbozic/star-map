@@ -176,7 +176,7 @@ export default {
                         "12px Helvetica, Arial, sans-serif",  // Different fonts for diff.
                         "11px Helvetica, Arial, sans-serif"]},// ranked constellations
     lines: true,   // Show constellation lines, style below
-    lineStyle: { stroke: "#ffffff", width: 1, opacity: 1, roughness: 0.6 }, 
+    lineStyle: { stroke: "#ff0000", width: 1, opacity: 1, roughness: 0.6 }, 
     bounds: false, // Show constellation boundaries, style below
     boundStyle: { stroke: "#00ff00", width: 0.5, opacity: 0.8, dash: [2, 4] }
   },  

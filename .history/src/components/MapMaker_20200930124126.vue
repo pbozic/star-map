@@ -16,6 +16,7 @@ const { parse, stringify } = require('svgson')
 import {RenderMode, Svg2Roughjs} from 'svg2roughjs'
 import svgFile from "@/assets/images/map.svg";
 import starMap from "@/components/StarMap.vue";
+import {main} from 'magica'
 
 
 export default {
@@ -114,7 +115,7 @@ export default {
           can      = document.createElement('canvas'), // Not shown on page
           ctx      = can.getContext('2d'),
           loader   = new Image;                        // Not shown on page
-          console.log("svgEl", svgEl);
+
           loader.width  = can.width  = tgtImage.width;
           loader.height = can.height = tgtImage.height;
           loader.onload = function(){

@@ -6,9 +6,8 @@
         
       </div>
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
-       
-        <div id="celestial-map" v-show="selected_type === 'normal'"></div>
-         <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'">
+        <img src="../assets/images/design.png" alt="" >
+        <div id="celestial-map" v-if="selected_type === 'MINIMALISTIČNA'"></div>
        
       </div>
       <div class="text-area">
@@ -176,7 +175,7 @@ export default {
                         "12px Helvetica, Arial, sans-serif",  // Different fonts for diff.
                         "11px Helvetica, Arial, sans-serif"]},// ranked constellations
     lines: true,   // Show constellation lines, style below
-    lineStyle: { stroke: "#ffffff", width: 1, opacity: 1, roughness: 0.6 }, 
+    lineStyle: { stroke: "#ff0000", width: 1, opacity: 1, roughness: 0.6 }, 
     bounds: false, // Show constellation boundaries, style below
     boundStyle: { stroke: "#00ff00", width: 0.5, opacity: 0.8, dash: [2, 4] }
   },  
@@ -341,9 +340,6 @@ export default {
   width: 50%;
 }
 .star-map {
-  img {
-        width: 100%;
-  }
   // top: 50%;
   // transform: translateY(-50%);
 &.black {
