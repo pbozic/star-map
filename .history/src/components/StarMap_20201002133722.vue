@@ -10,6 +10,7 @@
         <div id="celestial-map" v-show="selected_type === 'normal'"></div>
         <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'" class="fancy">
         <img :class="['design', [extra_design]]" :src="images[extra_design]" alt="">
+        {{krog}}
        
       </div>
       <div class="text-area">
@@ -356,12 +357,6 @@ export default {
       left: 2.5%;
       top: 11px;
     }
-    .design {
-      position: absolute;
-      top: 4.5%;
-      left: 5%;
-      width: 89% !important;
-    }
   }
   .circle2 {
     .fancy {
@@ -371,18 +366,18 @@ export default {
       top: 11px;
     }
     .design {
-      position: absolute;
-      top: 4%;
-      left: 5%;
-      width: 89% !important;
+        position: absolute;
+        top: 1%;
+        left: 1%;
+        width: 96% !important;
     }
   }
   .square {
     .design {
-     position: absolute;
-      top: 9%;
-      left: 13%;
-      width: 74% !important;
+      position: absolute;
+      top: 6%;
+      left: 10%;
+      width: 81% !important;
     }
   }
   .fancy {
@@ -417,7 +412,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   padding-top: 75%;
   background-color: white;
   border: 5px black solid;
-  padding: 35px;
+  padding: 15px;
   .normal {
     .map {
         width: 100%;

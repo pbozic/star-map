@@ -10,6 +10,7 @@
         <div id="celestial-map" v-show="selected_type === 'normal'"></div>
         <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'" class="fancy">
         <img :class="['design', [extra_design]]" :src="images[extra_design]" alt="">
+        {{krog}}
        
       </div>
       <div class="text-area">

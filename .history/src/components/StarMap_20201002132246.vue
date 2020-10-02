@@ -8,8 +8,9 @@
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
        
         <div id="celestial-map" v-show="selected_type === 'normal'"></div>
-        <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'" class="fancy">
-        <img :class="['design', [extra_design]]" :src="images[extra_design]" alt="">
+        <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'">
+        <!-- <img :class="['design', [extra_design]]" :src="[extra_design]" alt=""> -->
+        {{krog}}
        
       </div>
       <div class="text-area">
@@ -47,11 +48,6 @@ export default {
   },
   data() {
     return {
-      images: {
-        krog,
-        krog2,
-        kvadrat,
-      },
       api_key: "pk.4648c2b6ecdd58446110e10f87dcfbd6",
       naslov: "Ulica Bratov Učakar 84",
       test: "test",
@@ -349,43 +345,7 @@ export default {
   width: 50%;
 }
 .star-map {
-  .circle {
-    .fancy {
-      position: relative;
-      width: 95%;
-      left: 2.5%;
-      top: 11px;
-    }
-    .design {
-      position: absolute;
-      top: 4.5%;
-      left: 5%;
-      width: 89% !important;
-    }
-  }
-  .circle2 {
-    .fancy {
-      position: relative;
-      width: 95%;
-      left: 2.5%;
-      top: 11px;
-    }
-    .design {
-      position: absolute;
-      top: 4%;
-      left: 5%;
-      width: 89% !important;
-    }
-  }
-  .square {
-    .design {
-     position: absolute;
-      top: 9%;
-      left: 13%;
-      width: 74% !important;
-    }
-  }
-  .fancy {
+  img {
         width: 100%;
   }
   // top: 50%;
@@ -417,26 +377,13 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   padding-top: 75%;
   background-color: white;
   border: 5px black solid;
-  padding: 35px;
-  .normal {
-    .map {
-        width: 100%;
+  padding: 25px;
+  .map {
+    width: 100%;
 
-        &.square {
-          border: 1px solid black;
-        }
+    &.square {
+      border: 1px solid black;
     }
-  
-  }
-  .extra {
-    .map {
-        width: 100%;
-
-        &.square {
-          border: 0px solid black;
-        }
-    }
-  
   }
   // .circle {
   //   display: block;
@@ -451,23 +398,22 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   //   }
   // }
 }
-
 .text-area {
     bottom: 0px;
     position: absolute;
     text-align: center;
     right: 0px;
-    height: 180px;
+    height: 200px;
     width: 90%;
     left: 5%;
     .text {
       word-break: keep-all;
       position: relative;
       top: 0px;
-      max-height: 60px;
-      min-height: 60px;
+      max-height: 80px;
+      min-height: 80px;
       &:first-child {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
       }
      
       // line-height: 80px;
@@ -497,22 +443,5 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     }
 }
 
-}
-.design {
-  opacity: 0.7;
-   position: absolute;
-    top: 3%;
-    left: 3%;
-    width: 93% !important;
-}
-.normal {
-  .design {
-    display: none;
-  }
-}
-.extra {
-  .design {
-    display: block !important;
-  }
 }
 </style>
