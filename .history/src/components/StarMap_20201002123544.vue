@@ -415,7 +415,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     }
 }
 .datum{
-    bottom: 10px;
+    bottom: 25px;
     position: absolute;
     font-size: 12px;
     left: 0px;
@@ -423,8 +423,8 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
 }
 @media (max-width: 532px) { 
 .star-map {
-  height: 480px;
-  width: 100%;
+  height: 330px;
+  width: 80%;
 }
 .text-area {
       height: 170px;

@@ -226,7 +226,7 @@ export default {
   watch: {
     text1: function (val) {
       let x= 1;
-      let y = 54;
+      let y = 80;
       while (x == 1) {
 
           var element = this.$refs.posvetilo;
@@ -244,7 +244,7 @@ export default {
     },
     text2: function (val) {
       let x= 1;
-      let y = 38;
+      let y = 80;
       while (x == 1) {
       
           var element = this.$refs.malo;
@@ -408,14 +408,14 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
       max-height: 80px;
       min-height: 80px;
       &:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 40px;
       }
      
       // line-height: 80px;
     }
 }
 .datum{
-    bottom: 10px;
+    bottom: 25px;
     position: absolute;
     font-size: 12px;
     left: 0px;
@@ -423,8 +423,8 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
 }
 @media (max-width: 532px) { 
 .star-map {
-  height: 480px;
-  width: 100%;
+  //height: 330px;
+  width: 80%;
 }
 .text-area {
       height: 170px;
