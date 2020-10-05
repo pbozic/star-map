@@ -571,7 +571,6 @@ input,select {
   display:block;
   border:none;
   border-bottom:1px solid #ccc;
-  color: #aa9863;
 }
 input.disabled {
   pointer-events: none;

@@ -571,7 +571,6 @@ input,select {
   display:block;
   border:none;
   border-bottom:1px solid #ccc;
-  color: #aa9863;
 }
 input.disabled {
   pointer-events: none;
@@ -903,22 +902,5 @@ select:focus,
 textarea:focus,
 button:focus {
     outline: none !important;
-}
-
-</style>
-
-<style lang="scss">
-.background {
-  position: relative;
-  background-image: url("/img/mock.png");
-  width:100%;
-  padding-top: 100%;
-  background-size: contain;
-  background-repeat: none;
-  .okvir {
-    transform: scaleX(0.33) scaleY(.3);
-    position: absolute;
-    top: -143px;
-  }
 }
 </style>

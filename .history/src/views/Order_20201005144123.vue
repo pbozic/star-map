@@ -2,12 +2,15 @@
   <div class="home">
     <div class="container">
       <div class="row">
-         <div class="col">
-           <div class="background">
-             <StarMap v-bind:font1="font1" v-bind:font2="font2" v-bind:text1="text1"  v-bind:text2="text2" v-bind:dateText="dateText" v-bind:extra_design="extra_design" v-bind:selected_type="selected_type" v-bind:color="selected_color"/>
-           </div>
-           
-          </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{width: `${getProgress()}%`}"></div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-3"></div>
+         <div class="col"><StarMap v-bind:font1="font1" v-bind:font2="font2" v-bind:text1="text1"  v-bind:text2="text2" v-bind:dateText="dateText" v-bind:extra_design="extra_design" v-bind:selected_type="selected_type" v-bind:color="selected_color"/></div>
+         <div class="col-sm-3"></div>
       </div>
       <div class="row">
         <div class="col">
@@ -571,7 +574,6 @@ input,select {
   display:block;
   border:none;
   border-bottom:1px solid #ccc;
-  color: #aa9863;
 }
 input.disabled {
   pointer-events: none;
@@ -903,22 +905,5 @@ select:focus,
 textarea:focus,
 button:focus {
     outline: none !important;
-}
-
-</style>
-
-<style lang="scss">
-.background {
-  position: relative;
-  background-image: url("/img/mock.png");
-  width:100%;
-  padding-top: 100%;
-  background-size: contain;
-  background-repeat: none;
-  .okvir {
-    transform: scaleX(0.33) scaleY(.3);
-    position: absolute;
-    top: -143px;
-  }
 }
 </style>

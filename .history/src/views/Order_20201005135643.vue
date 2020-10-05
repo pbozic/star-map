@@ -2,26 +2,29 @@
   <div class="home">
     <div class="container">
       <div class="row">
-         <div class="col">
-           <div class="background">
-             <StarMap v-bind:font1="font1" v-bind:font2="font2" v-bind:text1="text1"  v-bind:text2="text2" v-bind:dateText="dateText" v-bind:extra_design="extra_design" v-bind:selected_type="selected_type" v-bind:color="selected_color"/>
-           </div>
-           
-          </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{width: `${getProgress()}%`}"></div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-3"></div>
+         <div class="col"><StarMap v-bind:font1="font1" v-bind:font2="font2" v-bind:text1="text1"  v-bind:text2="text2" v-bind:dateText="dateText" v-bind:extra_design="extra_design" v-bind:selected_type="selected_type" v-bind:color="selected_color"/></div>
+         <div class="col-sm-3"></div>
       </div>
       <div class="row">
         <div class="col">
            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <a :class="['nav-link', {'active': (selected_tab === 'trenutek' || selected_tab === 'posvetilo' || selected_tab === 'izgled' || selected_tab === 'izgled2')}]" @click=" e => e.preventDefault()" id="trenutek-tab">Izberi Trenutek</a>
+                <a :class="['nav-link', {'active': (selected_tab === 'trenutek' || selected_tab === 'posvetilo' || selected_tab === 'izgled' || selected_tab === 'izgled2')}]" @click=" e => e.preventDefault()" id="trenutek-tab">1. Izberi Trenutek</a>
                 <span class="arrow"></span>
               </li>
               <li class="nav-item" role="presentation">
-                <a :class="['nav-link', {'active': (selected_tab === 'posvetilo' || selected_tab === 'izgled' || selected_tab === 'izgled2')}]"  @click=" e => e.preventDefault()" id="posvetilo-tab" >Vpiši posvetilo</a>
+                <a :class="['nav-link', {'active': (selected_tab === 'posvetilo' || selected_tab === 'izgled' || selected_tab === 'izgled2')}]"  @click=" e => e.preventDefault()" id="posvetilo-tab" >2. Vpiši posvetilo</a>
                 <span class="arrow"></span>
               </li>
               <li class="nav-item" role="presentation">
-                <a :class="['nav-link', {'active': (selected_tab === 'izgled' || selected_tab === 'izgled2')}]" @click=" e => e.preventDefault()" id="izgled-tab">Izberi Izgled</a>
+                <a :class="['nav-link', {'active': (selected_tab === 'izgled' || selected_tab === 'izgled2')}]" @click=" e => e.preventDefault()" id="izgled-tab">3. Izberi Izgled</a>
               </li>
             </ul>
         </div>
@@ -166,7 +169,9 @@
                   </div>
                 </div>
 
-                    <div class="row justify-content-md-center">
+                <div class="row">
+                  <div class="col">
+                    <div class="row">
                       <div :class="{'col-sm-3 col-4 vrsta': true, 'active': selected_product ? selected_product.id === product.id ? true : false : false }" v-for="product of products" :key="product.id" @click="selectProduct(product)">
                         <img :src="product.selectedImage" alt="">
                         <div class="overlay d-none d-sm-block">
@@ -177,7 +182,8 @@
                         </div>
                       </div>
                     </div>
-
+                  </div>
+                </div>
                  <br />
                   <br />
                 <div class="row" v-if="selected_product != null">
@@ -189,7 +195,7 @@
                 <div class="row" v-if="selected_product != null">
                   <!-- BARVE -->
                   <div class="col">
-                    <div class="row justify-content-md-center">
+                    <div class="row">
                       <div :class="{'col-sm-3 col-4 barva': true, 'active': selected_color === color }" v-for="(color) of selected_product_variations.colors" :key="color" @click="selectVariant(color)">
                         <img :src="selected_product_variations.map[color].image" alt="">
                         <div class="overlay d-none d-sm-block">
@@ -571,7 +577,6 @@ input,select {
   display:block;
   border:none;
   border-bottom:1px solid #ccc;
-  color: #aa9863;
 }
 input.disabled {
   pointer-events: none;
@@ -587,7 +592,6 @@ input.disabled {
 .nav-item {
   border: none;
   position: relative;
-  text-transform: uppercase;
   a {
     height: 85px;
         line-height: 65px;
@@ -654,9 +658,6 @@ input.disabled {
     padding: 0px;
     background-origin: content-box;
     position: relative;
-     @media (min-width: 340px) and (max-width: 532px) { 
-      margin-right: 15px;
-    }
     cursor: pointer;
     &.active {
       border: 2px solid #852b23;
@@ -670,20 +671,7 @@ input.disabled {
         border-color: transparent #852b23 transparent transparent;
         position: absolute;
         right: 0;
-        top: 0;
        }
-        &:before {
-        content: " ";
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-image: url("/img/tick.svg");
-        background-repeat: no-repeat;
-        position: absolute;
-        right: 4px;
-        top: 4px;
-        z-index: 10;
-      }
     }
     img {
       max-width: 100%;
@@ -723,9 +711,6 @@ input.disabled {
     padding: 0px;
     background-origin: content-box;
     position: relative;
-    @media (min-width: 340px) and (max-width: 532px) { 
-      margin-right: 15px;
-    }
     cursor: pointer;
     &.active {
       border: 2px solid #852b23;
@@ -739,20 +724,19 @@ input.disabled {
         border-color: transparent #852b23 transparent transparent;
         position: absolute;
        right: 0;
- top: 0;
+
 
       }
-       &:before {
+       &:after {
         content: " ";
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-image: url("/img/tick.svg");
-        background-repeat: no-repeat;
+         display: inline-block;
+        width: 0;
+        height: 0;
+        background-image: url("../assets/iamges/tick.svg");
         position: absolute;
-        right: 4px;
-        top: 4px;
-        z-index: 10;
+       right: 0;
+
+
       }
     }
     img {
@@ -796,32 +780,8 @@ input.disabled {
     @media (min-width: 340px) and (max-width: 532px) { 
      padding-top: 33%;
     }
-     &.active {
+    &.active {
       border: 2px solid #852b23;
-       &:after {
-        content: " ";
-         display: inline-block;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 50px 50px 0;
-        border-color: transparent #852b23 transparent transparent;
-        position: absolute;
-        right: 0;
-        top: 0;
-       }
-        &:before {
-        content: " ";
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-image: url("/img/tick.svg");
-        background-repeat: no-repeat;
-        position: absolute;
-        right: 4px;
-        top: 4px;
-        z-index: 10;
-      }
     }
     span {
         top: 50%;
@@ -903,22 +863,5 @@ select:focus,
 textarea:focus,
 button:focus {
     outline: none !important;
-}
-
-</style>
-
-<style lang="scss">
-.background {
-  position: relative;
-  background-image: url("/img/mock.png");
-  width:100%;
-  padding-top: 100%;
-  background-size: contain;
-  background-repeat: none;
-  .okvir {
-    transform: scaleX(0.33) scaleY(.3);
-    position: absolute;
-    top: -143px;
-  }
 }
 </style>
