@@ -6,7 +6,7 @@
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
        
         <div id="celestial-map" v-show="selected_type === 'normal'"></div>
-        <img src="/img/mask.png" alt="" v-show="selected_type === 'extra'" class="fancy">
+        <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'" class="fancy">
         <div v-html="genereatedConstelations" v-show="selected_type === 'extra'" class="fancy"  alt=""></div>
         <img :class="['design', [extra_design]]" :src="images[extra_design]" alt="">
        
@@ -316,7 +316,7 @@ export default {
           var parser = new DOMParser();
           var SVG = parser.parseFromString(result, "image/svg+xml"); 
 
-          this.genereatedConstelations = result;
+          this.genereatedConstelations = this.svg_to_png_data(SVG);
           
         });
       });
@@ -480,12 +480,6 @@ export default {
 }
 .star-map {
   color: black;
-  svg {
-    transform: scale(2.2);
-    position: absolute;
-    top: 140px;
-    left: 230px;
-  }
   .circle {
     .fancy {
       position: relative;

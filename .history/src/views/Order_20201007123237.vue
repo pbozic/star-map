@@ -96,8 +96,8 @@
                   <br />
                   <div class="controlls">
                     <div class="row">
-                     <div class="col jsutify-content-center">
-                       <button :class="['next-button', {'disabled': this.location == null}]" @click="nextTab('posvetilo')">Nadaljuj</button>
+                     <div class="col">
+                       <button :class="['next-button', {'disabled': this.location == null}, 'float-right']" @click="nextTab('posvetilo')">Nadaljuj</button>
                       </div> 
                     </div>
                     <div class="row">
@@ -170,12 +170,12 @@
                   <div class="controlls">
                     <div class="row">
                      <div class="col">
-                       <button :class="['next-button', {'disabled': this.location == null},]" @click="nextTab('izgled')">Nadaljuj</button>
+                       <button :class="['next-button', {'disabled': this.location == null}, 'float-right']" @click="nextTab('izgled')">Nadaljuj</button>
                       </div> 
                     </div>
                     <div class="row">
                      <div class="col">
-                        <div :class="['back-button', 'text-center']" @click="nextTab('trenutek')"> &lt; Vrni se</div>
+                        <div :class="['next-button']" @click="nextTab('trenutek')"> &lt; Vrni se</div>
                       </div> 
                     </div>
                    
@@ -279,12 +279,13 @@
                   <div class="controlls">
                      <div class="row">
                      <div class="col">
-                         <button :class="['next-button']" @click="getSelectedProductVariant()">Dodaj v košarico</button>
+                         <button :class="['next-button', 'float-right']" @click="getSelectedProductVariant()">Dodaj v košarico</button>
                       </div> 
                     </div>
                     <div class="row">
                      <div class="col">
-                        <div :class="['back-button', 'text-center']" @click="selected_product == null ? nextTab('posvetilo') : selected_product = null">Vrni se</div>
+                        <div :class="['next-button']" @click="nextTab('trenutek')"> &lt; Vrni se</div>
+                        <div :class="['next-button', 'text-center']" @click="selected_product == null ? nextTab('posvetilo') : selected_product = null">Vrni se</div>
                       </div> 
                     </div>
                    
@@ -559,15 +560,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.back-button {
-  margin-top: 15px;
-  cursor:pointer;
-}
-.next-button {
-      position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
 #myTabContent {
   min-height: 500px;
   transition: height 0.5 ease-in-out;
@@ -582,7 +574,7 @@ export default {
 button {
   list-style: none;
   font: inherit;
-  margin: 0 auto;
+  margin: 0;
   touch-action: manipulation;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -1065,7 +1057,6 @@ button:focus {
   #celestial-map canvas {
     min-height: 200px;
     min-width: 200px;
-    transform: scale(1.2);
   }}
 }
 
@@ -1119,7 +1110,7 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-    bottom: 15%;
+    bottom: 25%;
     transform: scale(0.5);
   }
   #celestial-map canvas {

@@ -1119,7 +1119,7 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-    bottom: 15%;
+    bottom: 25%;
     transform: scale(0.5);
   }
   #celestial-map canvas {

@@ -561,7 +561,6 @@ export default {
 <style lang="scss">
 .back-button {
   margin-top: 15px;
-  cursor:pointer;
 }
 .next-button {
       position: relative;
@@ -1119,7 +1118,7 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-    bottom: 15%;
+    bottom: 25%;
     transform: scale(0.5);
   }
   #celestial-map canvas {

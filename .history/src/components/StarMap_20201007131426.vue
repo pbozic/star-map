@@ -6,8 +6,8 @@
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
        
         <div id="celestial-map" v-show="selected_type === 'normal'"></div>
-        <img src="/img/mask.png" alt="" v-show="selected_type === 'extra'" class="fancy">
-        <div v-html="genereatedConstelations" v-show="selected_type === 'extra'" class="fancy"  alt=""></div>
+        <img src="../assets/images/design.png" alt="" v-show="selected_type === 'extra'" class="fancy">
+        <img :src="genereatedConstelations" v-show="selected_type === 'extra'" class="fancy"  alt="">
         <img :class="['design', [extra_design]]" :src="images[extra_design]" alt="">
        
       </div>
@@ -315,44 +315,30 @@ export default {
           console.log("REUSLT", result)
           var parser = new DOMParser();
           var SVG = parser.parseFromString(result, "image/svg+xml"); 
-
-          this.genereatedConstelations = result;
-          
+          let tgtImage = document.querySelector('#img-foo'),      // Where to draw the result
+          can      = document.createElement('canvas'), // Not shown on page
+          ctx      = can.getContext('2d'),
+          loader   = new Image;                        // Not shown on page
+          loader.width  = can.width  = tgtImage.width;
+          loader.height = can.height = tgtImage.height;
+          console.log("RSLT", SVG);
+          let that = this;
+          loader.onload = function(){
+            alert("hi");
+            ctx.drawImage( loader, 0, 0, loader.width, loader.height );
+            tgtImage.src = can.toDataURL();
+            console.log(tgtImage.src);
+             that.genereatedConstelations = can.toDataURL();
+          };
+          var svgAsXML = (new XMLSerializer).serializeToString( SVG );
+         
+          loader.src = 'data:image/svg+xml,' + encodeURIComponent( svgAsXML );
         });
       });
       this.config.stars.size = 3;
       Celestial.apply(this.config);
     }, 1000)
-    },
-    svg_to_png_data:function(target) {
-  var ctx, mycanvas, svg_data, img, child;
-
-  // Flatten CSS styles into the SVG
-  for (let i = 0; i < target.childNodes.length; i++) {
-    child = target.childNodes[i];
-    var cssStyle = window.getComputedStyle(child);
-    if(cssStyle){
-       child.style.cssText = cssStyle.cssText;
     }
-  }
-
-  // Construct an SVG image
-  svg_data = '<svg xmlns="http://www.w3.org/2000/svg" width="' + target.offsetWidth +
-             '" height="' + target.offsetHeight + '">' + target.innerHTML + '</svg>';
-  img = new Image();
-  img.src = "data:image/svg+xml," + encodeURIComponent(svg_data);
-
-  // Draw the SVG image to a canvas
-  mycanvas = document.createElement('canvas');
-  mycanvas.width = target.offsetWidth;
-  mycanvas.height = target.offsetHeight;
-  ctx = mycanvas.getContext("2d");
-  ctx.drawImage(img, 0, 0);
-
-  // Return the canvas's data
-  return mycanvas.toDataURL("image/png");
-}
-
   },
   watch: {
     text1: function (val) {
@@ -480,12 +466,6 @@ export default {
 }
 .star-map {
   color: black;
-  svg {
-    transform: scale(2.2);
-    position: absolute;
-    top: 140px;
-    left: 230px;
-  }
   .circle {
     .fancy {
       position: relative;

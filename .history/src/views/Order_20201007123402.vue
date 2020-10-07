@@ -96,8 +96,8 @@
                   <br />
                   <div class="controlls">
                     <div class="row">
-                     <div class="col jsutify-content-center">
-                       <button :class="['next-button', {'disabled': this.location == null}]" @click="nextTab('posvetilo')">Nadaljuj</button>
+                     <div class="col">
+                       <button :class="['next-button', {'disabled': this.location == null}, 'float-right']" @click="nextTab('posvetilo')">Nadaljuj</button>
                       </div> 
                     </div>
                     <div class="row">
@@ -170,7 +170,7 @@
                   <div class="controlls">
                     <div class="row">
                      <div class="col">
-                       <button :class="['next-button', {'disabled': this.location == null},]" @click="nextTab('izgled')">Nadaljuj</button>
+                       <button :class="['next-button', {'disabled': this.location == null}, 'float-right']" @click="nextTab('izgled')">Nadaljuj</button>
                       </div> 
                     </div>
                     <div class="row">
@@ -279,7 +279,7 @@
                   <div class="controlls">
                      <div class="row">
                      <div class="col">
-                         <button :class="['next-button']" @click="getSelectedProductVariant()">Dodaj v košarico</button>
+                         <button :class="['next-button', 'float-right']" @click="getSelectedProductVariant()">Dodaj v košarico</button>
                       </div> 
                     </div>
                     <div class="row">
@@ -561,12 +561,6 @@ export default {
 <style lang="scss">
 .back-button {
   margin-top: 15px;
-  cursor:pointer;
-}
-.next-button {
-      position: relative;
-    left: 50%;
-    transform: translateX(-50%);
 }
 #myTabContent {
   min-height: 500px;
@@ -1065,7 +1059,6 @@ button:focus {
   #celestial-map canvas {
     min-height: 200px;
     min-width: 200px;
-    transform: scale(1.2);
   }}
 }
 
@@ -1119,7 +1112,7 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-    bottom: 15%;
+    bottom: 25%;
     transform: scale(0.5);
   }
   #celestial-map canvas {
