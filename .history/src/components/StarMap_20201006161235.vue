@@ -204,7 +204,7 @@ export default {
     supergalactic: { show: false, stroke: "#cc66cc", width: 1.3, opacity: 0.7 }
   },
   background: {        // Background style
-    fill: "#000000",   // Area fill
+    fill: "#e6e6e6",   // Area fill
     opacity: 1, 
     stroke: "#000000", // Outline
     width: 1.5
@@ -408,7 +408,7 @@ export default {
    color: white;
 }
 &.extra {
-  background-color: #e6e6e6;
+  background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
   color: black !important;
 }
@@ -421,7 +421,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   margin: 0 auto;
   height: 600px;
   padding-top: 75%;
-  background-color: #e6e6e6;
+  background-color: white;
   border: 5px black solid;
   padding: 35px;
    
@@ -464,7 +464,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     position: absolute;
     text-align: center;
     right: 0px;
-    height: 80px;
+    height: 170px;
     width: 80%;
     left: 10%;
     .text {

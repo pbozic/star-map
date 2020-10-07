@@ -1010,19 +1010,11 @@ button:focus {
   }
 }
  @media only screen and (max-width: 600px) {
-   .nav-link {
-          font-size: 14px;
-   }
-    #posvetilo-tab,
-     #izgled-tab {
-      
-        padding-left: 35px;
-    }
 
    .background {
    .okvir {
       position: absolute;
-      bottom: 2%;
+      bottom: 10%;
       transform: scale(0.3);
     }
   #celestial-map canvas {

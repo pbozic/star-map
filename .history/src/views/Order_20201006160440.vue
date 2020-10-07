@@ -117,7 +117,7 @@
                     <div class="col-sm-6">
                       <label for="">Izberi pisavo posvetilo 1 </label>
                          <select class="" id="exampleFormControlSelect1"  :style="{'font-family': font1}" v-model="font1">
-                          <option style="font-family: 'Sophia Ronald'" value="Sophia Ronald" selected>Pisava 1</option>
+                          <option style="font-family: 'Sophia Ronald'" value="Sophia Ronald">Pisava 1</option>
                           <option style="font-family: 'Bodoni'" value="Bodoni">Pisava 2</option>
                           <option style="font-family: 'Queen Xylophia'" value="Queen Xylophia">Pisava 3</option>
                           <option style="font-family: 'Kiss Me or Not'" value="Kiss Me or Not">Pisava 4</option>
@@ -138,7 +138,7 @@
                       <label for="">Izberi pisavo posvetilo 2</label>
                        <select class="" id="exampleFormControlSelect1"  :style="{'font-family': font2}" v-model="font2">
                           <option style="font-family: 'Sophia Ronald'" value="Sophia Ronald">Pisava 1</option>
-                          <option style="font-family: 'Bodoni'" value="Bodoni" selected>Pisava 2</option>
+                          <option style="font-family: 'Bodoni'" value="Bodoni">Pisava 2</option>
                           <option style="font-family: 'Queen Xylophia'" value="Queen Xylophia">Pisava 3</option>
                           <option style="font-family: 'Kiss Me or Not'" value="Kiss Me or Not">Pisava 4</option>
                           <option style="font-family: 'I Love Glitter'" value="I Love Glitter">Pisava 5</option>
@@ -168,7 +168,7 @@
                   </div>
                 </div>
 
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-md-center">
                       <div :class="{'col-sm-3 col-4 vrsta': true, 'active': selected_product ? selected_product.id === product.id ? true : false : false }" v-for="product of products" :key="product.id" @click="selectProduct(product)">
                         <img :src="product.selectedImage" alt="">
                         <div class="overlay d-none d-sm-block">
@@ -191,7 +191,7 @@
                 <div class="row" v-if="selected_product != null">
                   <!-- BARVE -->
                   <div class="col">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-md-center">
                       <div :class="{'col-sm-3 col-4 barva': true, 'active': selected_color === color }" v-for="(color) of selected_product_variations.colors" :key="color" @click="selectVariant(color)">
                         <img :src="selected_product_variations.map[color].image" alt="">
                         <div class="overlay d-none d-sm-block">
@@ -202,13 +202,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row" v-if="selected_product.title == 'Umetniška zvezdna mapa' || selected_product.title == 'Razlita zvezdna mapa'">
+                     <div class="row" v-if="selected_product.title == 'Umetniška zvezdna mapa' || selected_product.title == 'Razlita zvezdna mapa'">
                         <div class="col">
-                           <h1 class="h1 text-center">Detajli</h1> 
-                        </div>
-                    </div>
-                     <div class="row justify-content-center" v-if="selected_product.title == 'Umetniška zvezdna mapa' || selected_product.title == 'Razlita zvezdna mapa'">
-                       
+                          <h1 class="h1 text-center">Detajli</h1> 
                           <!-- <div class="form-check">
                             <input type="radio" value="krog" class="form-check-input" id="krog" v-model="extra_design">
                             <label class="form-check-label" for="krog">Krog</label>
@@ -230,6 +226,11 @@
                               <div :class="{'col-sm-3 col-4 design_select': true, 'active': extra_design === 'kvadrat' }" @click="extra_design = 'kvadrat'">
                                   <img src="/img/square.png" alt="">
                             </div>
+                            <div class="form-check">
+                              <input type="radio" value="none" class="form-check-input" id="none" v-model="extra_design">
+                              <label class="form-check-label" for="none">Brez</label>
+                            </div>
+                        </div>
                       </div>
                       <br />
                        <div class="row">
@@ -237,9 +238,9 @@
                           <h1 class="h1 text-center">Velikost</h1> 
                         </div>
                       </div>
-                      <div class="row justify-content-center" >
+                      <div class="row">
                           <div :class="{'col-sm-3 col-4 velikost': true, 'active': selected_size === size }" v-for="(size, i) of selected_product_variations.sizes" :key="size" @click="selected_size = size">
-                                <img :class="`size${i+1}`" src="/img/size.jpg" alt="">
+                               <StarMap :style="{'transform': `scale(0.${1+ i})`}" v-bind:font1="font1" v-bind:smallFont="true" v-bind:font2="font2" v-bind:text1="text1"  v-bind:text2="text2" v-bind:dateText="dateText" v-bind:extra_design="extra_design" v-bind:selected_type="selected_type" v-bind:color="selected_color"/>
                                 <span>{{size}}</span>
                             </div>
                       </div>
@@ -256,8 +257,8 @@
                   {{example_text}}
                   <br />
                   <div class="controlls">
-                     <button :class="['next-button', 'float-left']" @click="selected_product == null ? nextTab('posvetilo') : selected_product = null">Vrni se</button>
-                     <button :class="['next-button', 'float-right']" @click="getSelectedProductVariant()">Dodaj v košarico</button>
+                     <button :class="['next-button', 'float-left']" @click="selected_product == null ? nextTab('posvetilo') : selected_product = null">Nazaj</button>
+                     <button :class="['next-button', 'float-right']" @click="getSelectedProductVariant()">Poglej Ceno</button>
                   </div>
                 
               </div>
@@ -298,8 +299,8 @@ export default {
       time: "12:00",
       text1: null,
       text2: null,
-      font1: "Sophia Ronald",
-      font2: "Bodoni",
+      font1: null,
+      font2: null,
       dateText: "",
       errorMsg: null,
       products: null,
@@ -534,7 +535,7 @@ export default {
   transition: height 0.5 ease-in-out;
 }
 .controlls{
-  margin-bottom: 50px;
+  margin-bottom: 45px;
 }
 .tab-pane {
   padding: 25px;
@@ -572,7 +573,7 @@ button {
 }
 textarea {
   width: 100%;
-  min-height: 80px;
+  min-height: 150px;
 }
 
 input,select {
@@ -803,6 +804,10 @@ input.disabled {
     background-origin: content-box;
     position: relative;
     cursor: pointer;
+    padding-top: 25%;
+    @media (min-width: 340px) and (max-width: 532px) { 
+     padding-top: 33%;
+    }
     img {
       width: 100%;
     }
@@ -858,33 +863,11 @@ input.disabled {
     background-origin: content-box;
     position: relative;
     cursor: pointer;
-    // padding-top: 25%;
-    // @media (min-width: 340px) and (max-width: 532px) { 
-    //  padding-top: 33%;
-    // }
-    img {
-
-      transform: translate(-50%, -50%);
-      top: 50%;
-      left: 50%;
-      position: relative;
-      z-index: 0;
+    padding-top: 25%;
+    @media (min-width: 340px) and (max-width: 532px) { 
+     padding-top: 33%;
     }
-    .size1 {
-          width: 44%;
-    }
-    .size2{
-
-          width: 60%;
-    }
-    .size3 {
-
-          width: 90%;
-
-    }
-    
      &.active {
-       z-index: 10;
       border: 2px solid #852b23;
        &:after {
         content: " ";
@@ -912,7 +895,8 @@ input.disabled {
       }
     }
     span {
-      bottom: 0px;
+        top: 50%;
+      transform: translateY(-50%);
       color: black;
       text-transform: uppercase;
       display: block;
@@ -922,7 +906,6 @@ input.disabled {
       font-size: 24px;
       @media (min-width: 340px) and (max-width: 532px) { 
         width: 75%;
-        font-size: 16px;
       }
 
 
@@ -1010,19 +993,11 @@ button:focus {
   }
 }
  @media only screen and (max-width: 600px) {
-   .nav-link {
-          font-size: 14px;
-   }
-    #posvetilo-tab,
-     #izgled-tab {
-      
-        padding-left: 35px;
-    }
 
    .background {
    .okvir {
       position: absolute;
-      bottom: 2%;
+      bottom: 10%;
       transform: scale(0.3);
     }
   #celestial-map canvas {
@@ -1090,8 +1065,5 @@ button:focus {
   }
   }
 }
-.h1 {
-  text-transform: uppercase;
-  font-size: 24px !important;
-}
+
 </style>

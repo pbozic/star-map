@@ -168,7 +168,7 @@
                   </div>
                 </div>
 
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-md-center">
                       <div :class="{'col-sm-3 col-4 vrsta': true, 'active': selected_product ? selected_product.id === product.id ? true : false : false }" v-for="product of products" :key="product.id" @click="selectProduct(product)">
                         <img :src="product.selectedImage" alt="">
                         <div class="overlay d-none d-sm-block">
@@ -868,14 +868,13 @@ input.disabled {
       top: 50%;
       left: 50%;
       position: relative;
-      z-index: 0;
     }
     .size1 {
           width: 44%;
     }
     .size2{
 
-          width: 60%;
+          width: 70%;
     }
     .size3 {
 
@@ -884,7 +883,6 @@ input.disabled {
     }
     
      &.active {
-       z-index: 10;
       border: 2px solid #852b23;
        &:after {
         content: " ";
@@ -1010,19 +1008,11 @@ button:focus {
   }
 }
  @media only screen and (max-width: 600px) {
-   .nav-link {
-          font-size: 14px;
-   }
-    #posvetilo-tab,
-     #izgled-tab {
-      
-        padding-left: 35px;
-    }
 
    .background {
    .okvir {
       position: absolute;
-      bottom: 2%;
+      bottom: 10%;
       transform: scale(0.3);
     }
   #celestial-map canvas {

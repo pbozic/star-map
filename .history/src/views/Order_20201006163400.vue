@@ -1013,16 +1013,18 @@ button:focus {
    .nav-link {
           font-size: 14px;
    }
-    #posvetilo-tab,
-     #izgled-tab {
+    #posvetilo-tab {
       
-        padding-left: 35px;
+        padding-left: 34px;
     }
-
+    #izgled-tab {
+      
+        padding-left: 10px;
+    }
    .background {
    .okvir {
       position: absolute;
-      bottom: 2%;
+      bottom: 10%;
       transform: scale(0.3);
     }
   #celestial-map canvas {

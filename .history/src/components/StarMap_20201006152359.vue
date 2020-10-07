@@ -1,6 +1,6 @@
 <template>
   <div class="okvir">
-    <div :class="{'star-map': true, [selected_type]: true, [color_mapped]: true, smallFont: smallFont}">
+    <div :class="{'star-map': true, [selected_type]: true, [color_mapped]: true,}">
       <div :class='{"circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
       </div>
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
@@ -11,16 +11,15 @@
        
       </div>
       <div class="text-area">
-          <div class="text" :style="{'font-family': font1 || 'Quattrocento Sans', 'font-size': smallFont ? '21px' : font1_size}" ref="posvetilo">
+          <div class="text" :style="{'font-family': font1 || 'Quattrocento Sans', 'font-size': font1_size}" ref="posvetilo">
             {{text1 || ""}}
           </div>
 
-          <div class="text" :style="{'font-family': font2 || 'Quattrocento Sans', 'font-size': smallFont ? '21px' : font2_size}" ref="malo">
+          <div class="text" :style="{'font-family': font2 || 'Quattrocento Sans', 'font-size': font2_size}" ref="malo">
             {{text2}}
           </div>
           <div class="datum">
           {{dateText || "KRAJ, 01.01.2020"}} 
-          {{smallFont}}
           </div>
       </div>
     </div>
@@ -43,7 +42,6 @@ export default {
     extra_design: String,
     selected_type: String,
     color: String,
-    smallFont: Boolean,
   },
   data() {
     return {
@@ -354,7 +352,6 @@ export default {
   width: 50%;
 }
 .star-map {
-  color: black;
   .circle {
     .fancy {
       position: relative;
@@ -408,7 +405,7 @@ export default {
    color: white;
 }
 &.extra {
-  background-color: #e6e6e6;
+  background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
   color: black !important;
 }
@@ -421,7 +418,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   margin: 0 auto;
   height: 600px;
   padding-top: 75%;
-  background-color: #e6e6e6;
+  background-color: white;
   border: 5px black solid;
   padding: 35px;
    
@@ -464,7 +461,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     position: absolute;
     text-align: center;
     right: 0px;
-    height: 80px;
+    height: 170px;
     width: 80%;
     left: 10%;
     .text {
@@ -484,7 +481,6 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
 }
 .datum{
     bottom: 10px;
-    
     position: absolute;
     font-size: 12px;
     left: 0px;
@@ -510,7 +506,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
 
 }
 .design {
-  opacity: 1;
+  opacity: 0.7;
    position: absolute;
     top: 3%;
     left: 3%;
