@@ -1059,7 +1059,7 @@ button:focus {
    .background {
    .okvir {
       position: absolute;
-      bottom: 2%;
+      top: -66%;
       transform: scale(0.3);
     }
   #celestial-map canvas {
@@ -1073,7 +1073,7 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-    bottom: 10%;
+      top: -66%;
     transform: scale(0.3);
   }
    #celestial-map canvas {
@@ -1089,7 +1089,7 @@ button:focus {
   .background {
   .okvir {
     position: absolute;
-    bottom: 10%;
+    top: -15%;
     transform: scale(0.3);
   }
    #celestial-map canvas {
@@ -1104,7 +1104,7 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-    bottom: 10%;
+    top: -20%;
     transform: scale(0.3);
   }
    #celestial-map canvas {
@@ -1119,7 +1119,7 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-    bottom: 15%;
+    top: -20%;
     transform: scale(0.5);
   }
   #celestial-map canvas {
