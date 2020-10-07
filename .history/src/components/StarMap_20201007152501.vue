@@ -6,7 +6,7 @@
       <div :class='{"map": true, "circle": extra_design == "krog", "circle2": extra_design == "krog2", "square": extra_design == "kvadrat"}'>
        
         <div id="celestial-map" v-show="selected_type === 'normal'"></div>
-        <img :src="`/img/${color ? color.toLowerCase() : ''}.png`" alt="" v-show="selected_type === 'extra'" class="fancy">
+        <img :src="`/img/${color ? color.toLowerCase(): ""}.png`" alt="" v-show="selected_type === 'extra'" class="fancy">
         <div v-html="genereatedConstelations" v-show="selected_type === 'extra'" class="svg"  alt=""></div>
         <img :class="['design', [extra_design]]" :src="images[extra_design]" alt="">
        
