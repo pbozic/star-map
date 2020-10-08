@@ -601,7 +601,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     position: absolute;
     text-align: center;
     right: 0px;
-    height: 80px;
+    height: 170px;
     width: 80%;
     left: 10%;
     .text {

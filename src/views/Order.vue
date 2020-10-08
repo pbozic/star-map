@@ -530,6 +530,7 @@ export default {
      }
   },
   mounted() {
+    console.info("Star Konfihurator 0.1 loaded!");
     this.shopifyClient = new ShopifyClient(config.shopifyDomain, config.shopifyToken);
     this.shopifyClient.allProducts(products => {
       
