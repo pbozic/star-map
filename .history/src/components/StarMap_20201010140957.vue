@@ -252,7 +252,7 @@ export default {
       this.config.stars.size = 5;
       this.config.background.fill = "rgba(0,0,0,0)";
       this.config.background.stroke = "rgba(0,0,0,0)";
-      this.config.width = 5000;
+      // this.config.width = 0;
       Celestial.apply(this.config);
       Celestial.exportSVG((e) => {
         
@@ -314,16 +314,10 @@ export default {
           //console.log(svgEl.innerHTML);
           result += "</svg>";
            this.genereatedConstelations = result;
-           setTimeout(() => {
-            let el = document.getElementById("svg_stars");
-            console.log("ELEMNET", el);
-            var s = new XMLSerializer().serializeToString(el);
-            var encodedData = window.btoa(s);
-            var data = "data:image/svg+xml;base64," + encodedData;
-            console.log("iMAGE", data);
-           }, 100)
           console.log("REUSLT", result)
-        
+          let el = document.getElementById("svg_stars");
+          console.log("ELEMNET", el);
+          var s = new XMLSerializer().serializeToString(el)
           this.genereatedConstelations = result;
           
         });
@@ -399,6 +393,9 @@ export default {
       console.log(y);
     },
     selected_type: function(val) {
+      this.config.width = 400;
+      alert(val);
+      Celestial.apply(this.config);
       this.generate();
     },
      color: {
@@ -652,7 +649,7 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
     
     }
 }
- 
+
 }
 .design {
   opacity: 1;
@@ -670,10 +667,5 @@ box-shadow: -5px 5px 22px -6px rgba(0,0,0,0.75);
   .design {
     display: block !important;
   }
-}
-#output,
-#svg,
-#img-foo {
-  display: none;
 }
 </style>

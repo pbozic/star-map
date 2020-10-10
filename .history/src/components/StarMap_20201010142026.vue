@@ -252,7 +252,7 @@ export default {
       this.config.stars.size = 5;
       this.config.background.fill = "rgba(0,0,0,0)";
       this.config.background.stroke = "rgba(0,0,0,0)";
-      this.config.width = 5000;
+      this.config.width = 250;
       Celestial.apply(this.config);
       Celestial.exportSVG((e) => {
         

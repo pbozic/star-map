@@ -1062,8 +1062,6 @@ button:focus {
     }
   #celestial-map canvas {
     min-height: 200px;
-    height: 200px !important;
-    width: 200px !important;
     min-width: 200px;
     transform: scale(1.2);
   }}

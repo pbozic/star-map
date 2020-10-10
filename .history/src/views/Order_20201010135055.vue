@@ -577,6 +577,7 @@ export default {
   margin-bottom: 50px;
 }
 .tab-pane {
+  padding: 25px;
   padding-left: 0px;
 }
 button {
@@ -697,13 +698,16 @@ input.disabled {
 
 .vrsta{
     margin-bottom: 15px;
-
+    margin-right: 30px;
     min-height: auto;
     background-size: contain;
     background-repeat: no-repeat;
+    padding: 0px;
     background-origin: content-box;
     position: relative;
-   
+     @media (min-width: 340px) and (max-width: 532px) { 
+      margin-right: 15px;
+    }
     cursor: pointer;
     &.active {
       border: 2px solid #852b23;
@@ -763,14 +767,16 @@ input.disabled {
 }
 .barva{
     margin-bottom: 15px;
-
+    margin-right: 30px;
     min-height: auto;
     background-size: contain;
     background-repeat: no-repeat;
-   
+    padding: 0px;
     background-origin: content-box;
     position: relative;
-   
+    @media (min-width: 340px) and (max-width: 532px) { 
+      margin-right: 15px;
+    }
     cursor: pointer;
     &.active {
       border: 2px solid #852b23;
@@ -1039,7 +1045,6 @@ button:focus {
     position: absolute;
     svg {
       min-width: 100%;
-      min-height: 100%;
     }
    
   }
@@ -1057,14 +1062,12 @@ button:focus {
    .background {
    .okvir {
       position: absolute;
-   bottom: -5%;
+    top: -65%;
     transform: scale(0.35);
     }
   #celestial-map canvas {
-    min-height: 200px;
-    height: 200px !important;
-    width: 200px !important;
-    min-width: 200px;
+    // min-height: 200px;
+    // min-width: 200px;
     transform: scale(1.2);
   }}
 }
@@ -1077,8 +1080,8 @@ button:focus {
     transform: scale(0.35);
   }
    #celestial-map canvas {
-    min-height: 250px;
-    min-width: 250px;
+    // min-height: 250px;
+    // min-width: 250px;
   }
   }
 }
@@ -1094,8 +1097,8 @@ button:focus {
  
   }
    #celestial-map canvas {
-    min-height: 300px;
-    min-width: 300px;
+    // min-height: 300px;
+    // min-width: 300px;
   }
   }
 }
@@ -1120,20 +1123,13 @@ button:focus {
   .background {
     .okvir {
     position: absolute;
-   bottom: -130%;
+   top: -11%;
     transform: scale(0.65);
   }
   #celestial-map canvas {
     min-height: 300px;
     min-width: 300px;
   }
-  }
-
-  #svg_map {
-        width: 95%;
-    left: 37.5%;
-    top: 36%;
-    transform: scale(1.5);
   }
 }
 .h1 {

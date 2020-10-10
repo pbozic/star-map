@@ -1039,7 +1039,6 @@ button:focus {
     position: absolute;
     svg {
       min-width: 100%;
-      min-height: 100%;
     }
    
   }
@@ -1062,8 +1061,6 @@ button:focus {
     }
   #celestial-map canvas {
     min-height: 200px;
-    height: 200px !important;
-    width: 200px !important;
     min-width: 200px;
     transform: scale(1.2);
   }}
@@ -1127,13 +1124,6 @@ button:focus {
     min-height: 300px;
     min-width: 300px;
   }
-  }
-
-  #svg_map {
-        width: 95%;
-    left: 37.5%;
-    top: 36%;
-    transform: scale(1.5);
   }
 }
 .h1 {
