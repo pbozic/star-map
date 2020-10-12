@@ -249,9 +249,10 @@ export default {
         pencilFilter: true
     });
      setTimeout(() => {
-        this.config.stars.size = 50;
+        this.config.stars.size = 10;
       this.config.background.fill = "rgba(255,255,255,0)";
       this.config.background.stroke = "rgba(0,0,0,0)";
+      this.config.constellations.lineStyle.width = 100;
       let map = document.querySelector("#celestial-map");
       let can = document.querySelector("#celestial-map canvas");
       console.log("can", can);
@@ -315,7 +316,7 @@ export default {
           }
           let result = '<svg id="svg_stars" viewBox="0 0 1200 1200" title="D3-Celestial" version="1.1" encoding="UTF-8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">';
 
-          result += '<defs><style type="text/css">.background {fill: rgba(0,0,0,0); }  .milkyWay {}  .milkyWayBg {}  .gridLines {}  .constBoundaries {}  .planesequatorial {}  .planesecliptic {}  .planesgalactic {}  .planessupergalactic {}  .constLines {}  .mapBorder {fill:none; stroke:rgba(0,0,0,0); stroke-width:1.5; stroke-opacity:1; stroke-dasharray:none; }  .stars {fill:#ffffff; fill-opacity:1; stroke:none; stroke-width:undefined; stroke-opacity:1; stroke-dasharray:none; font:null; }  .dsos {}  .planets {}  .gridvaluesLon {}  .gridvaluesLat {}  .constNames {}  .starDesignations {}  .starNames {}  .dsoNames {}  .planetNames {}  .horizon {}  .daylight {}  .constLines1 {fill:none; stroke:#ffffff; stroke-width:5; stroke-opacity:1; stroke-dasharray:none; }  .constLines2 {fill:none; stroke:#ffffff; stroke-width:5; stroke-opacity:1; stroke-dasharray:none; }  .constLines3 {fill:none; stroke:#ffffff; stroke-width:5; stroke-opacity:1; stroke-dasharray:none; }  .stars-3 {fill:#9bbcff; }  .stars-2 {fill:#a9c5ff; }  .stars-1 {fill:#bfd3ff; }  .stars0 {fill:#d7e2ff; }  .stars1 {fill:#dce5ff; }  .stars2 {fill:#e3e9ff; }  .stars3 {fill:#ebeeff; }  .stars4 {fill:#f6f4ff; }  .stars5 {fill:#fef9ff; }  .stars6 {fill:#fff5f5; }  .stars7 {fill:#fff0e9; }  .stars8 {fill:#ffebdc; }  .stars9 {fill:#ffe8d5; }  .stars10 {fill:#ffe1c6; }  .stars11 {fill:#ffdbba; }  .stars12 {fill:#ffd5ad; }  .stars13 {fill:#ffd1a3; }  .stars14 {fill:#ffc994; }  .stars15 {fill:#ffc489; }  .stars16 {fill:#ffbb78; }  .stars17 {fill:#ffb872; }  .stars18 {fill:#ffb165; }  .stars19 {fill:#ffa957; }  .stars20 {fill:#ffa34b; }  .stars21 {fill:#ff9d3f; }  .stars22 {fill:#ff9631; }  .stars23 {fill:#ff8e21; }  .stars24 {fill:#ff870a; }  .stars25 {fill:#ff8300; }  .stars26 {fill:#ff7c00; }  .stars27 {fill:#ff7500; }  .stars28 {fill:#ff7000; }  .stars29 {fill:#ff6900; }  .stars30 {fill:#ff6300; }  .stars31 {fill:#ff5b00; }  .stars32 {fill:#ff5600; } </style></defs>'
+          result += '<defs><style type="text/css">.background {fill: rgba(0,0,0,0); }  .milkyWay {}  .milkyWayBg {}  .gridLines {}  .constBoundaries {}  .planesequatorial {}  .planesecliptic {}  .planesgalactic {}  .planessupergalactic {}  .constLines {}  .mapBorder {fill:none; stroke:rgba(0,0,0,0); stroke-width:1.5; stroke-opacity:1; stroke-dasharray:none; }  .stars {fill:#ffffff; fill-opacity:1; stroke:none; stroke-width:undefined; stroke-opacity:1; stroke-dasharray:none; font:null; }  .dsos {}  .planets {}  .gridvaluesLon {}  .gridvaluesLat {}  .constNames {}  .starDesignations {}  .starNames {}  .dsoNames {}  .planetNames {}  .horizon {}  .daylight {}  .constLines1 {fill:none; stroke:#ffffff; stroke-width:1; stroke-opacity:1; stroke-dasharray:none; }  .constLines2 {fill:none; stroke:#ffffff; stroke-width:1; stroke-opacity:1; stroke-dasharray:none; }  .constLines3 {fill:none; stroke:#ffffff; stroke-width:1; stroke-opacity:1; stroke-dasharray:none; }  .stars-3 {fill:#9bbcff; }  .stars-2 {fill:#a9c5ff; }  .stars-1 {fill:#bfd3ff; }  .stars0 {fill:#d7e2ff; }  .stars1 {fill:#dce5ff; }  .stars2 {fill:#e3e9ff; }  .stars3 {fill:#ebeeff; }  .stars4 {fill:#f6f4ff; }  .stars5 {fill:#fef9ff; }  .stars6 {fill:#fff5f5; }  .stars7 {fill:#fff0e9; }  .stars8 {fill:#ffebdc; }  .stars9 {fill:#ffe8d5; }  .stars10 {fill:#ffe1c6; }  .stars11 {fill:#ffdbba; }  .stars12 {fill:#ffd5ad; }  .stars13 {fill:#ffd1a3; }  .stars14 {fill:#ffc994; }  .stars15 {fill:#ffc489; }  .stars16 {fill:#ffbb78; }  .stars17 {fill:#ffb872; }  .stars18 {fill:#ffb165; }  .stars19 {fill:#ffa957; }  .stars20 {fill:#ffa34b; }  .stars21 {fill:#ff9d3f; }  .stars22 {fill:#ff9631; }  .stars23 {fill:#ff8e21; }  .stars24 {fill:#ff870a; }  .stars25 {fill:#ff8300; }  .stars26 {fill:#ff7c00; }  .stars27 {fill:#ff7500; }  .stars28 {fill:#ff7000; }  .stars29 {fill:#ff6900; }  .stars30 {fill:#ff6300; }  .stars31 {fill:#ff5b00; }  .stars32 {fill:#ff5600; } </style></defs>'
           for (let part of svgParts) {
             result += part;
           }
@@ -338,9 +339,10 @@ export default {
        
         });
       });
-      this.config.stars.size = 5;
+      this.config.stars.size = 20;
       this.config.background.fill = "rgba(0,0,0,1)";
       this.config.background.stroke = "rgba(0,0,0,1)";
+      this.config.constellations.lineStyle.width = 5;
       map.classList.remove("generate");
       can.classList.remove("generate");
       Celestial.reload(this.config);
@@ -518,9 +520,14 @@ export default {
   color: black;
   .svg{
     position: absolute;
-    top: 50px;
-    left: 50px;
-    width: 73%;
+    top: 70px;
+    left: 0px;
+    width: 68%;
+     @media only screen and (max-width: 600px)  {
+        position: absolute;
+        top: 165px;
+        left: 275px;
+    }
   }
   .circle {
     .fancy {

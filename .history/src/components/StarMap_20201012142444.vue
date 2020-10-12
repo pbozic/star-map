@@ -249,9 +249,10 @@ export default {
         pencilFilter: true
     });
      setTimeout(() => {
-        this.config.stars.size = 50;
+        this.config.stars.size = 30;
       this.config.background.fill = "rgba(255,255,255,0)";
       this.config.background.stroke = "rgba(0,0,0,0)";
+      this.config.constellations.lineStyle.width = 5000;
       let map = document.querySelector("#celestial-map");
       let can = document.querySelector("#celestial-map canvas");
       console.log("can", can);
@@ -338,9 +339,10 @@ export default {
        
         });
       });
-      this.config.stars.size = 5;
+      this.config.stars.size = 20;
       this.config.background.fill = "rgba(0,0,0,1)";
       this.config.background.stroke = "rgba(0,0,0,1)";
+      this.config.constellations.lineStyle.width = 5;
       map.classList.remove("generate");
       can.classList.remove("generate");
       Celestial.reload(this.config);

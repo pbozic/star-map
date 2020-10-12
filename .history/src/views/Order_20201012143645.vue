@@ -945,19 +945,19 @@ input.disabled {
         z-index: 10;
       }
     }
-    p {
+    span {
       bottom: 0px;
-      // color: black;
-      // text-transform: uppercase;
-      // display: block;
-      // position: absolute;
-      // width: 85%;
-      // text-align: center;
-      // font-size: 24px;
-      // @media (min-width: 340px) and (max-width: 532px) { 
-      //   width: 75%;
-      //   font-size: 16px;
-      // }
+      color: black;
+      text-transform: uppercase;
+      display: block;
+      position: absolute;
+      width: 85%;
+      text-align: center;
+      font-size: 24px;
+      @media (min-width: 340px) and (max-width: 532px) { 
+        width: 75%;
+        font-size: 16px;
+      }
 
 
     }

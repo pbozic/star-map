@@ -262,7 +262,7 @@
                           <div :class="{'col-sm-3 col-4 velikost': true, 'active': selected_size === size }" v-for="(size, i) of selected_product_variations.sizes" :key="size" @click="selected_size = size">
                                 <img :class="`size${i+1}`" src="/img/size.jpg" alt="">
                                 <br />
-                                <p>{{size}}</p>
+                                <span>{{size}}</span>
                             </div>
                       </div>
                   </div>
@@ -899,7 +899,8 @@ input.disabled {
     // }
     img {
 
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
+      top: 50%;
       left: 50%;
       position: relative;
       z-index: 0;
@@ -945,19 +946,19 @@ input.disabled {
         z-index: 10;
       }
     }
-    p {
+    span {
       bottom: 0px;
-      // color: black;
-      // text-transform: uppercase;
-      // display: block;
-      // position: absolute;
-      // width: 85%;
-      // text-align: center;
-      // font-size: 24px;
-      // @media (min-width: 340px) and (max-width: 532px) { 
-      //   width: 75%;
-      //   font-size: 16px;
-      // }
+      color: black;
+      text-transform: uppercase;
+      display: block;
+      position: absolute;
+      width: 85%;
+      text-align: center;
+      font-size: 24px;
+      @media (min-width: 340px) and (max-width: 532px) { 
+        width: 75%;
+        font-size: 16px;
+      }
 
 
     }
